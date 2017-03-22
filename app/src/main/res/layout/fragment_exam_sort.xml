@@ -1,0 +1,37 @@
+<android.support.percent.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.yujie.hero.fragment.ExamSortFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_widthPercent="40%"
+        android:id="@+id/dataRecyclerView"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="55%"
+        app:layout_marginLeftPercent="43%"
+        android:text="最近的十次成绩"
+        android:id="@+id/gradeOfUser"
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="28dp"
+        app:layout_marginTopPercent="3%"
+        />
+    <lecho.lib.hellocharts.view.LineChartView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_widthPercent="55%"
+        app:layout_marginLeftPercent="43%"
+        app:layout_marginTopPercent="15%"
+        android:id="@+id/dataLineChartView"
+        />
+
+</android.support.percent.PercentFrameLayout>

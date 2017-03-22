@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yujie.hero.view.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_header_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@mipmap/navigation_header_bg"
+    android:orientation="vertical"
+    android:paddingTop="5dp"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <com.yujie.hero.view.CircleTextImageView
+        android:id="@+id/userAvatar"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="5dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:src="@mipmap/activity_login_bg" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:id="@+id/userName"
+        android:layout_marginLeft="35dp"
+        android:text="Android Studio"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+    <TextView
+        android:id="@+id/userUid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:paddingTop="4dp"
+        android:text="android.studio@android.com" />
+
+    <TextView
+        android:id="@+id/userclass"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="16dp"
+        android:layout_height="wrap_content"
+        android:text="android.studio@android.com" />
+
+</com.yujie.hero.view.PercentLinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/getTenGrades"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="查看我最好的十个成绩" />
+        <item
+            android:id="@+id/getClassSort"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="查看我的排名" />
+    </group>
+
+    <item android:title="考试＆练习">
+        <menu>
+            <item
+                android:id="@+id/startExam"
+                android:icon="@drawable/ic_menu_share"
+                android:title="进入考试" />
+            <item
+                android:id="@+id/startExercise"
+                android:icon="@drawable/ic_menu_send"
+                android:title="进入练习" />
+        </menu>
+    </item>
+    <item android:title="@string/action_settings">
+        <menu>
+            <item
+                android:id="@+id/logout"
+                android:title="退出登陆"
+                android:icon="@drawable/logout"
+                />
+            <item
+                android:id="@id/point"
+                android:title="修改密码"
+                android:icon="@drawable/reset_pwd"/>
+        </menu>
+    </item>
+
+</menu>

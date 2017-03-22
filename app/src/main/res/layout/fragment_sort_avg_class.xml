@@ -1,0 +1,33 @@
+<android.support.percent.PercentFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.yujie.hero.fragment.SortAvgClassFragment">
+
+    <com.yujie.hero.view.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <lecho.lib.hellocharts.view.LineChartView
+            android:id="@+id/chart_top"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+        </lecho.lib.hellocharts.view.LineChartView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray" />
+
+        <lecho.lib.hellocharts.view.ColumnChartView
+            android:id="@+id/chart_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+        </lecho.lib.hellocharts.view.ColumnChartView>
+    </com.yujie.hero.view.PercentLinearLayout>
+
+</android.support.percent.PercentFrameLayout>

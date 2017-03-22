@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#6b0a9eed"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.yujie.hero.activity.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_marginTopPercent="8%"
+        app:layout_marginLeftPercent="5%"
+        app:layout_marginRightPercent="15%"
+        app:layout_marginBottomPercent="15%"
+        android:layout_centerHorizontal="true"
+        android:text="你还未进行过练习"
+        android:textColor="#000"
+        android:textSize="40dp"
+        android:textAlignment="center"
+        android:id="@+id/NoJoinTxt"
+        android:visibility="visible"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_marginTopPercent="25%"
+        app:layout_marginLeftPercent="15%"
+        app:layout_marginRightPercent="25%"
+        app:layout_marginBottomPercent="25%"
+        android:src="@mipmap/activity_login_bg"
+        android:id="@+id/NoJoinImg"
+        android:visibility="gone"
+        />
+    <lecho.lib.hellocharts.view.ComboLineColumnChartView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_marginTopPercent="22%"
+        app:layout_marginLeftPercent="10%"
+        app:layout_marginRightPercent="10%"
+        app:layout_marginBottomPercent="10%"
+        android:id="@+id/main_activity_col_line_showGrades"
+        android:visibility="visible"
+        />
+
+</android.support.percent.PercentRelativeLayout>
