@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:drawable="@drawable/runhorse001"
+        android:drawable="@drawable/horse00"
         android:duration="300" />
 
     <item
-        android:drawable="@drawable/runhorse002"
+        android:drawable="@drawable/horse01"
         android:duration="300" />
 
     <item
-        android:drawable="@drawable/runhorse003"
+        android:drawable="@drawable/horse02"
         android:duration="300" />
 
     <item
-        android:drawable="@drawable/runhorse004"
+        android:drawable="@drawable/horse03"
         android:duration="300" />
 
 
     <item
-        android:drawable="@drawable/runhorse005"
+        android:drawable="@drawable/horse04"
         android:duration="300" />
 
     <item
-        android:drawable="@drawable/runhorse006"
+        android:drawable="@drawable/horse05"
         android:duration="300" />
 
 </animation-list>
