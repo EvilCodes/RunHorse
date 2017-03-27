@@ -5,6 +5,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -16,7 +19,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +60,10 @@ public class GameActivity extends AppCompatActivity {
     TextView wordContent;
     @Bind(R.id.edit_content)
     EditText editContent;
+    @Bind(R.id.iv_runhorse)
+    ImageView ivRunhorse;
+    @Bind(R.id.iv_slowhorse)
+    ImageView ivSlowhorse;
     private MyCountTimer mc;
     boolean isBegan = false;
     Dialog dialog;
@@ -82,6 +91,24 @@ public class GameActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ivRunhorse.setImageResource(R.drawable.horses_running);
+        TranslateAnimation animation = new TranslateAnimation(0,1000,0,0);
+        animation.setDuration(5000);
+        ivRunhorse.setAnimation(animation);
+        ivRunhorse.setBackgroundColor(Color.TRANSPARENT);
+        AnimationDrawable anima= (AnimationDrawable) ivRunhorse.getDrawable();
+        anima.start();
+
+        ivSlowhorse.setImageResource(R.drawable.horses_running);
+        ivSlowhorse.setBackgroundColor(Color.TRANSPARENT);
+        AnimationDrawable animSlow = (AnimationDrawable) ivSlowhorse.getDrawable();
+        animSlow.start();
+
     }
 
     /**
