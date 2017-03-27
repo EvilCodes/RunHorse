@@ -17,23 +17,16 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-import com.yujie.hero.HeroApplication;
-import com.yujie.hero.I;
+import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.application.I;
 import com.yujie.hero.R;
 import com.yujie.hero.bean.Result;
 import com.yujie.hero.utils.FileUtils;
 import com.yujie.hero.utils.OkHttpUtils;
-import com.zhy.http.okhttp.callback.Callback;
-import com.zhy.http.okhttp.callback.StringCallback;
-
-import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 
 /**

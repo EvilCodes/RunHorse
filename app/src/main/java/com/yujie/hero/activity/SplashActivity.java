@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.yujie.hero.HeroApplication;
+import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.R;
 import com.yujie.hero.bean.UserBean;
 import com.yujie.hero.db.DataHelper;

@@ -9,10 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,17 +19,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
-import com.yujie.hero.HeroApplication;
-import com.yujie.hero.I;
+import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.application.I;
 import com.yujie.hero.R;
 import com.yujie.hero.bean.ExamBean;
 import com.yujie.hero.bean.ExerciseBean;
@@ -46,20 +40,13 @@ import com.yujie.hero.utils.Utils;
 import com.yujie.hero.view.CircleTextImageView;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.net.Inet4Address;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import lecho.lib.hellocharts.animation.ChartAnimationListener;
 import lecho.lib.hellocharts.listener.ComboLineColumnChartOnValueSelectListener;
-import lecho.lib.hellocharts.listener.DummyLineChartOnValueSelectListener;
-import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
-import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Column;
 import lecho.lib.hellocharts.model.ColumnChartData;
 import lecho.lib.hellocharts.model.ComboLineColumnChartData;
@@ -67,11 +54,8 @@ import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.SubcolumnValue;
-import lecho.lib.hellocharts.model.ValueShape;
-import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.ComboLineColumnChartView;
-import lecho.lib.hellocharts.view.LineChartView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

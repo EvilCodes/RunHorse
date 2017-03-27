@@ -3,18 +3,16 @@ package com.yujie.hero.fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.yujie.hero.HeroApplication;
-import com.yujie.hero.I;
+import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.application.I;
 import com.yujie.hero.R;
 import com.yujie.hero.bean.ExamClassGradeBean;
 import com.yujie.hero.bean.ExamGradeAvgBean;
-import com.yujie.hero.bean.ExamGradeBean;
 import com.yujie.hero.utils.OkHttpUtils;
 import com.yujie.hero.utils.Utils;
 
@@ -32,7 +30,6 @@ import lecho.lib.hellocharts.model.ColumnChartData;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.model.SelectedValue;
 import lecho.lib.hellocharts.model.SubcolumnValue;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.util.ChartUtils;

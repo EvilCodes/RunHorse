@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.yujie.hero.HeroApplication;
-import com.yujie.hero.I;
+import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.application.I;
 import com.yujie.hero.R;
 import com.yujie.hero.bean.Result;
 import com.yujie.hero.utils.OkHttpUtils;

@@ -1,4 +1,4 @@
-package com.yujie.hero;
+package com.yujie.hero.application;
 
 import android.app.Application;
 

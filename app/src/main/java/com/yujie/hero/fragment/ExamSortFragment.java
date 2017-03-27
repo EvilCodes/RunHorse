@@ -6,15 +6,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.yujie.hero.HeroApplication;
-import com.yujie.hero.I;
+import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.application.I;
 import com.yujie.hero.R;
 import com.yujie.hero.adapter.ExamGradeAdapter;
 import com.yujie.hero.bean.ExamResultBean;
