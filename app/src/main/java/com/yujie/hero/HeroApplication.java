@@ -8,9 +8,9 @@ import com.yujie.hero.bean.UserBean;
  * Created by yujie on 16-9-7.
  */
 public class HeroApplication extends Application {
-    public static final String SERVER_ROOT = "http://192.168.1.102:8080/Hero/Server?";
-    public static final String AVATAR_ROOT = "http://192.168.1.102:8080/Hero/avatar/";
-//    public static final String SERVER_ROOT = "http://10.0.2.2:8080/Hero/Server?";
+    public static final String SERVER_ROOT = "http://192.168.10.9:8080/Hero/Server?";
+    public static final String AVATAR_ROOT = "http://192.168.10.9:8080/Hero/avatar/";
+    //    public static final String SERVER_ROOT = "http://10.0.2.2:8080/Hero/Server?";
 //    public static final String AVATAR_ROOT = "http://10.0.2.2:8080/Hero/avatar/";
     public static final String EXERCISE_CODE = "10010";
     public static final String EXAM_CODE = "10011";
