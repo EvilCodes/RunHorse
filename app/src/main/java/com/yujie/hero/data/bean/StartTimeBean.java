@@ -1,4 +1,4 @@
-package com.yujie.hero.bean;
+package com.yujie.hero.data.bean;
 
 public class StartTimeBean {
 	private String start_time;

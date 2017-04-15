@@ -1,6 +1,6 @@
-package com.yujie.hero.bean;
+package com.yujie.hero.data.bean;
 
-public class ExamBean {
+public class  ExamBean {
 	private int id;
 	private String exam_name;
 	private String exam_time;

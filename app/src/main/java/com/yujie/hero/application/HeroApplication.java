@@ -2,7 +2,8 @@ package com.yujie.hero.application;
 
 import android.app.Application;
 
-import com.yujie.hero.bean.UserBean;
+import com.yujie.hero.data.bean.UserBean;
+
 
 /**
  * Created by yujie on 16-9-7.
@@ -10,8 +11,8 @@ import com.yujie.hero.bean.UserBean;
 public class HeroApplication extends Application {
 //    public static final String SERVER_ROOT = "http://192. 168.199.127:8080/Hero/Server?";
 //    public static final String AVATAR_ROOT = "http://192.168.199.127:8080/Hero/avatar/";
-    public static final String SERVER_ROOT = "http://192.168.100.191:8080/Hero/Server?";
-    public static final String AVATAR_ROOT = "http://192.168.100.191:8080/Hero/avatar/";
+    public static final String SERVER_ROOT = "http://192.168.10.9:8080/Hero/Server?";
+    public static final String AVATAR_ROOT = "http://192.168.10.9:8080/Hero/avatar/";
 //    public static final String SERVER_ROOT = "http://127.0.0.1:8080/Hero/Server?";
 //    public static final String AVATAR_ROOT = "http://127.0.0.1:8080/Hero/avatar/";
 

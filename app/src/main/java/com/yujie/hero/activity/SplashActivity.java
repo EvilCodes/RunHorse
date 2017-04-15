@@ -10,12 +10,13 @@ import android.view.WindowManager;
 
 import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.R;
-import com.yujie.hero.bean.UserBean;
+import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.db.DataHelper;
+import com.yujie.hero.tasks.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
     private static final String TAG = SplashActivity.class.getSimpleName();
-    /** Go LoginActivity*/
+    /** Go RegisterActivity*/
     private static final int GO_LOGIN = 1001;
     /** Go MainActivity*/
     private static final int GO_MAIN = 1002;
@@ -43,7 +44,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     /**
-     * go LoginActivity
+     * go RegisterActivity
      */
     private void goLogin() {
         startActivity(new Intent(this,LoginActivity.class));

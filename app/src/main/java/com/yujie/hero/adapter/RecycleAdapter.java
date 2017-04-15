@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.R;
 import com.yujie.hero.activity.GameActivity;
-import com.yujie.hero.bean.ExerciseBean;
+import com.yujie.hero.data.bean.ExerciseBean;
 
 import java.util.ArrayList;
 

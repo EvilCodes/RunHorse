@@ -1,4 +1,4 @@
-package com.yujie.hero.bean;
+package com.yujie.hero.data.bean;
 
 public class Result {
 	private boolean Flag;

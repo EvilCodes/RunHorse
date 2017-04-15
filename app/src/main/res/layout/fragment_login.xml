@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yujie.hero.view.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_activity_bg"
+    android:orientation="vertical">
+    <!--图标-->
+    <com.yujie.hero.view.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_heightPercent="35%">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@mipmap/app"
+            app:layout_heightPercent="50%"
+            app:layout_widthPercent="33%" />
+    </com.yujie.hero.view.PercentLinearLayout>
+
+    <!--登录主体-->
+    <com.yujie.hero.view.PercentLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_heightPercent="50%">
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_heightPercent="20%">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@mipmap/login_activity_phone_icon"
+                app:layout_heightPercent="60%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_widthPercent="10%" />
+
+            <EditText
+                android:id="@+id/login_activity_EditText_inputPhone"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:hint="请输入账号"
+                android:inputType="text"
+                android:textColorHint="#afdae1e1"
+                android:textSize="20dp"
+                app:layout_heightPercent="80%"
+                app:layout_marginRightPercent="5%"
+                app:layout_widthPercent="78%" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#afdae1e1"
+                app:layout_marginBottomPercent="25%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginRightPercent="5%" />
+        </android.support.percent.PercentRelativeLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_heightPercent="20%">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@mipmap/login_activity_password_icon"
+                app:layout_heightPercent="60%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_widthPercent="10%" />
+
+            <EditText
+                android:id="@+id/login_activity_EditText_inputPwd"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:textColorHint="#afdae1e1"
+                android:textSize="20dp"
+                app:layout_heightPercent="80%"
+                app:layout_marginRightPercent="5%"
+                app:layout_widthPercent="78%" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:background="#afdae1e1"
+                app:layout_marginBottomPercent="25%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginRightPercent="5%" />
+        </android.support.percent.PercentRelativeLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_heightPercent="15%"></android.support.percent.PercentRelativeLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_heightPercent="24%">
+
+            <Button
+                android:id="@+id/login_activity_Button_login"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/login_activity_login_btn_bg"
+                android:onClick="onClick"
+                android:text="登陆"
+                android:textColor="#fff"
+                android:textSize="23dp"
+                app:layout_heightPercent="70%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginRightPercent="5%" />
+        </android.support.percent.PercentRelativeLayout>
+
+        <android.support.percent.PercentRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_heightPercent="24%">
+
+            <Button
+
+                android:id="@+id/login_activity_Button_register"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/login_activity_login_btn_bg"
+                android:onClick="onClick"
+                android:text="注册"
+                android:textColor="#fff"
+                android:textSize="23dp"
+                app:layout_heightPercent="70%"
+                app:layout_marginLeftPercent="5%"
+                app:layout_marginRightPercent="5%" />
+        </android.support.percent.PercentRelativeLayout>
+    </com.yujie.hero.view.PercentLinearLayout>
+</com.yujie.hero.view.PercentLinearLayout>

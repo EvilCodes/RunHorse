@@ -1,4 +1,4 @@
-package com.yujie.hero.bean;
+package com.yujie.hero.data.bean;
 
 /**
  * Created by yujie on 16-9-16.

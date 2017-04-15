@@ -1,4 +1,4 @@
-package com.yujie.hero.bean;
+package com.yujie.hero.data.bean;
 
 public class UserBean {
 	private String uid;
@@ -8,6 +8,7 @@ public class UserBean {
 	private int b_class;
 	private int top_grade;
 	private String avatar;
+
 	public String getUid() {
 		return uid;
 	}

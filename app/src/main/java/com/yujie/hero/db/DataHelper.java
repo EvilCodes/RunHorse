@@ -5,12 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-import com.yujie.hero.activity.MainActivity;
-import com.yujie.hero.bean.ExerciseBean;
-import com.yujie.hero.bean.UserBean;
-import com.yujie.hero.bean.WordContentBean;
+import com.yujie.hero.data.bean.ExerciseBean;
+import com.yujie.hero.data.bean.UserBean;
+import com.yujie.hero.data.bean.WordContentBean;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -127,7 +125,6 @@ public class DataHelper extends SQLiteOpenHelper {
                 int b_class = cursor.getInt(cursor.getColumnIndex("b_class"));
                 String avatar = cursor.getString(cursor.getColumnIndex("avatar"));
                 int top_grade = cursor.getInt(cursor.getColumnIndex("top_grade"));
-                int status = cursor.getInt(cursor.getColumnIndex("status"));
                 UserBean user = new UserBean(uid,pwd,user_name,sex,b_class,top_grade,avatar);
                 return user;
             }
@@ -171,6 +168,13 @@ public class DataHelper extends SQLiteOpenHelper {
         long insert = db.insert("t_daily_exercise", null, values);
         return insert>0;
     }
+
+
+    /**
+     * 有关WordsContent数据库相关的操作
+     * @param course_id
+     * @return
+     */
 
     public ArrayList<WordContentBean> getWords(String course_id){
         SQLiteDatabase db = getReadableDatabase();

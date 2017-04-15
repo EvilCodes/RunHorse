@@ -21,9 +21,9 @@ import android.widget.Toast;
 import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.application.I;
 import com.yujie.hero.R;
-import com.yujie.hero.bean.Result;
-import com.yujie.hero.bean.UserBean;
-import com.yujie.hero.bean.WordContentBean;
+import com.yujie.hero.data.bean.Result;
+import com.yujie.hero.data.bean.UserBean;
+import com.yujie.hero.data.bean.WordContentBean;
 import com.yujie.hero.db.DataHelper;
 import com.yujie.hero.utils.MCountDownTimer;
 import com.yujie.hero.utils.OkHttpUtils;
@@ -351,7 +351,6 @@ public class GameActivity extends AppCompatActivity {
                             Toast.makeText(GameActivity.this,"考试时间已过，无法上传考试成绩",Toast.LENGTH_LONG).show();
                         }
                     }
-
                     @Override
                     public void onError(String error) {
                         Toast.makeText(GameActivity.this,"网络不通畅,请稍后再试",Toast.LENGTH_SHORT).show();

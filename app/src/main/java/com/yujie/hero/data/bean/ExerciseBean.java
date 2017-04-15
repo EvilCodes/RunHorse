@@ -1,4 +1,4 @@
-package com.yujie.hero.bean;
+package com.yujie.hero.data.bean;
 
 public class ExerciseBean {
 	private int id;
@@ -8,6 +8,8 @@ public class ExerciseBean {
 	private String course_id;
 	private String b_class;
 	private String start_time;
+
+
 	public String getStart_time() {
 		return start_time;
 	}

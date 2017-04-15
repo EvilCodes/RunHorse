@@ -1,4 +1,4 @@
-package com.yujie.hero.bean;
+package com.yujie.hero.data.bean;
 public class ClassObj {
 	private int id;
 	private String class_name;

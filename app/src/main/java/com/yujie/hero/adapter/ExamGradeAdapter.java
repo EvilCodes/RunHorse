@@ -3,7 +3,6 @@ package com.yujie.hero.adapter;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yujie.hero.R;
-import com.yujie.hero.bean.ExamResultBean;
-import com.yujie.hero.bean.ExerciseBean;
+import com.yujie.hero.data.bean.ExamResultBean;
 
 import java.util.ArrayList;
 
