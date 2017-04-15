@@ -20,17 +20,6 @@ public class TasksDbHelper extends SQLiteOpenHelper{
 
     private static final String COMMA_SEP = ",";
 
-
-    //    String user_sql = "create table if not exists t_user( " +
-    //            "uid char(15) primary key,"+
-    //            "pwd char(20) not null,"+
-    //            "user_name char(15) not null,"+
-    //            "sex Integer check(1 or 2),"+
-    //            "b_class Integer not null,"+
-    //            "avatar char(30),"+
-    //            "top_grade int(3),"+
-    //            "status Integer check(0 or 1)"+
-    //            ");";
     private static final String SQL_CREATE_T_USER = "CREATE TABLE" + TasksPersistenceContract.
             TaskEntry.Tuser.TABLE_NAME + "(" + TasksPersistenceContract.
             TaskEntry.Tuser.COLUMN_NAME_USER_ID + TEXT_TYPE + "PRIMARY KEY,"

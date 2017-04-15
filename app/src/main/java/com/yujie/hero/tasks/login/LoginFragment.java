@@ -76,7 +76,6 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
 
         String userName = sharedPreferences.getString("userName", null);
 
-
         if (userName != null) {
             loginActivityEditTextInputPhone.setText(userName);
         }
@@ -173,6 +172,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
             case R.id.login_activity_Button_register:
 
                 Log.e("LoginFragment", "register_button is clicked");
+
                 StartTargetActivity.jumpToTargetActivity(getActivity(), RegisterActivity.class);
 
                 break;

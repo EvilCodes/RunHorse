@@ -26,10 +26,13 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         LoginFragment loginFragment = (LoginFragment) getSupportFragmentManager().findFragmentById(R.id.login_fragment);
         if (loginFragment == null) {
+
             loginFragment=LoginFragment.newInstance();
 
         }
+        //MVP三个主要部分的创建
         new LoginPresenter(Injection.provideTasksRepository(this), loginFragment);
+
         AddFragmentToActivity.addFragmentToActivity(getSupportFragmentManager(),R.id.login_fragment,loginFragment);
 
 

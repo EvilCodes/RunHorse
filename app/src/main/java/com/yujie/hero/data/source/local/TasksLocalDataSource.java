@@ -89,7 +89,6 @@ public class TasksLocalDataSource implements TasksDataSource {
             callback.onUserBeanLoginLoaded(user);
         }
     }
-
     @Override
     public void getTuserTaskByUid(@NonNull LoadTuserCallback callback, String id) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();

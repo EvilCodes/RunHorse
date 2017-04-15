@@ -2,6 +2,8 @@ package com.yujie.hero.tasks.login;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
+import android.util.LogPrinter;
 
 import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.data.source.RemoteDataSource;
@@ -13,6 +15,7 @@ import com.yujie.hero.data.source.TasksRepository;
  */
 
 public class LoginPresenter implements LoginContract.Presenter {
+    private static String TAG = LoginPresenter.class.getSimpleName();
 
     LoginContract.View mLoginFragment;
     TasksRepository mTasksRepository;
@@ -20,8 +23,8 @@ public class LoginPresenter implements LoginContract.Presenter {
 
 
     public LoginPresenter(
-                          @NonNull TasksRepository tasksRepository,
-                          @NonNull LoginContract.View loginFragment) {
+            @NonNull TasksRepository tasksRepository,
+            @NonNull LoginContract.View loginFragment) {
         this.mLoginFragment = loginFragment;
         this.mTasksRepository = tasksRepository;
         mLoginFragment.setPresenter(this);
@@ -30,17 +33,15 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void start() {
 
-
-
     }
 
     @Override
-    public void LoginTask(String username, String pwd) {
+    public void LoginTask(final String username, String pwd) {
         mTasksRepository.getNetWorkTuserTask(new TasksDataSource.LoadTuserCallback() {
             @Override
             public void onUserBeanLoginLoaded(UserBean userBeen) {
-                if (userBeen!=null&&userBeen.getUid() !=null) {
-
+                if (userBeen != null && userBeen.getUid() != null) {
+                    Log.e(TAG, "userBean=" + userBeen);
                     mLoginFragment.getUserFromRemote(userBeen);
 
                 } else {
@@ -50,7 +51,6 @@ public class LoginPresenter implements LoginContract.Presenter {
 
             @Override
             public void onUserBeanLoadedByUid(UserBean userBeen) {
-
             }
 
             @Override
@@ -72,7 +72,7 @@ public class LoginPresenter implements LoginContract.Presenter {
             public void onDataNotAvailable() {
                 mLoginFragment.showRequestResult("网络不通畅,请稍后再试");
             }
-        },username,pwd);
+        }, username, pwd);
 
     }
 
@@ -97,7 +97,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void addLoginUserToLocalData(UserBean user, int status) {
 
-        mTasksRepository.saveTuserTask(user,status,null);
+        mTasksRepository.saveTuserTask(user, status, null);
 
     }
 
