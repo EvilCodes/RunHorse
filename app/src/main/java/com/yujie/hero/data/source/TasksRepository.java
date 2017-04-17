@@ -232,6 +232,7 @@ public class TasksRepository implements TasksDataSource {
     public void saveTuserTask(@NonNull UserBean user, @NonNull int status, @NonNull LoadTuserCallback callback) {
 
         mTasksRemoteDataSource.saveTuserTask(user, status, (RemoteDataSource.LoadTuserCallback) callback);
+        refreshLocalDataSource(user,callback);
         mTasksLocalDataSource.saveTuserTask(user, status, callback);
         if (mCachedUserBeanTasks == null) {
             mCachedUserBeanTasks = new LinkedHashMap<>();
