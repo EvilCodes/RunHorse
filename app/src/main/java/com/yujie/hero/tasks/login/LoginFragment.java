@@ -40,6 +40,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     private String userName;
     private String pwd;
     private SharedPreferences sharedPreferences;
+    private static String TAG = LoginFragment.class.getSimpleName();
 
     @Bind(R.id.login_activity_EditText_inputPhone)
     EditText loginActivityEditTextInputPhone;
@@ -65,9 +66,11 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
         pd = new ProgressDialog(context);
         sharedPreferences = context.getSharedPreferences("user_name", Context.MODE_PRIVATE);
     }
+
     @Override
     public void onResume() {
         super.onResume();
+        Log.e(TAG, "onResume");
         mPresenter.initUid();
     }
 
@@ -75,32 +78,28 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     public void initUid() {
 
         String userName = sharedPreferences.getString("userName", null);
-
+        Log.e(TAG, "userName=" + userName);
         if (userName != null) {
             loginActivityEditTextInputPhone.setText(userName);
         }
-
-
     }
 
     @Override
     public void checkOnClickButton() {
-
         loginActivityButtonLogin.setOnClickListener(this);
-
         loginActivityButtonRegister.setOnClickListener(this);
-
-
     }
 
     @Override
     public void getUserFromRemote(UserBean user) {
-
         HeroApplication.getInstance().setCurrentUser(user);
-        mPresenter.addLoginUserToLocalData(user,1);
+        mPresenter.addLoginUserToLocalData(user, 1);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("username", user.getUid());
+        editor.putString("userName", user.getUid());
+        editor.commit();
+        Log.e(TAG, "username=" + user.getUid());
         StartTargetActivity.jumpToTargetActivity(context, MainActivity.class);
+        getActivity().finish();
 
     }
 
@@ -166,7 +165,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
             case R.id.login_activity_Button_login:
                 Log.e("LoginFragment", "login_button is clicked");
                 mPresenter.checkEditText();
-                mPresenter.LoginTask(userName,pwd);
+                mPresenter.LoginTask(userName, pwd);
                 break;
 
             case R.id.login_activity_Button_register:
