@@ -128,6 +128,7 @@ public class OkHttpUtils<T> {
                 }
                 mUrl.append(key).append("=").append(URLEncoder.encode(value, UTF_8));
             }
+            Log.e("OkHttpUtils", "mUrl=" + mUrl);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

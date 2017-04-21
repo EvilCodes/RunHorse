@@ -210,7 +210,7 @@ interface LoadAreasTaskCallback{
     void saveStartTime(@NonNull StartTimeBean[] result,@NonNull LoadClassStartTimeCallback callback);
 
     interface LoadClassesCallback{
-        void onClassesLoaded(StartTimeBean[] result);
+        void onClassesLoaded(ClassObj[] result);
         void onClassesSaved(boolean isSaved);
         void onDataNotAvailable();
     }

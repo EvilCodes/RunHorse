@@ -2,6 +2,7 @@ package com.yujie.hero.data.source.remote;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.application.I;
@@ -12,11 +13,11 @@ import com.yujie.hero.data.bean.CourseBean;
 import com.yujie.hero.data.bean.ExamBean;
 import com.yujie.hero.data.bean.ExamGradeAvgBean;
 import com.yujie.hero.data.bean.ExerciseBean;
+import com.yujie.hero.data.bean.Result;
 import com.yujie.hero.data.bean.StartTimeBean;
 import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.data.bean.WordContentBean;
 import com.yujie.hero.data.source.RemoteDataSource;
-import com.yujie.hero.data.source.TasksDataSource;
 import com.yujie.hero.utils.OkHttpUtils;
 import com.yujie.hero.utils.Utils;
 
@@ -51,7 +52,9 @@ public class TasksRemoteDataSource implements RemoteDataSource {
         }
         return INSTANCE;
     }
-    private TasksRemoteDataSource() {}
+    public TasksRemoteDataSource() {
+
+    }
 
     @Override
     public void getNetWorkTuserTask(@NonNull final LoadTuserCallback callback, @NonNull String uid,
@@ -216,7 +219,21 @@ public class TasksRemoteDataSource implements RemoteDataSource {
     }
 
     @Override
-    public void getAreasTask(@NonNull LoadAreasTaskCallback callback) {
+    public void getAreasTask(@NonNull final LoadAreasTaskCallback callback) {
+        OkHttpUtils<AreasBean[]> utils = new OkHttpUtils();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST, I.Request.REQUEST_GET_AREA)
+                .targetClass(AreasBean[].class)
+                .execute(new OkHttpUtils.OnCompleteListener<AreasBean[]>() {
+                    @Override
+                    public void onSuccess(AreasBean[] result) {
+                            callback.onAreasTaskLoaded(result);
+                    }
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+                    }
+                });
 
     }
 
@@ -226,17 +243,56 @@ public class TasksRemoteDataSource implements RemoteDataSource {
     }
 
     @Override
-    public void getCourseTask(@NonNull LoadCourseTaskCallback callback) {
+    public void getCourseTask(@NonNull final LoadCourseTaskCallback callback) {
+        OkHttpUtils<CourseBean[]> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST, I.Request.REQUEST_GET_COURSE)
+                .targetClass(CourseBean[].class)
+                .execute(new OkHttpUtils.OnCompleteListener<CourseBean[]>() {
+                    @Override
+                    public void onSuccess(CourseBean[] result) {
+                            callback.onCourseLoaded(result);
+
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+                    }
+                });
+
 
     }
 
     @Override
     public void saveCourse(@NonNull CourseBean[] result, @NonNull LoadCourseTaskCallback callback) {
 
+
+
+
     }
 
     @Override
-    public void getStartTimeTask(@NonNull LoadClassStartTimeCallback callback) {
+    public void getStartTimeTask(@NonNull final LoadClassStartTimeCallback callback) {
+        OkHttpUtils<StartTimeBean[]> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST, I.Request.REQUEST_GET_TIME)
+                .targetClass(StartTimeBean[].class)
+                .execute(new OkHttpUtils.OnCompleteListener<StartTimeBean[]>() {
+                    @Override
+                    public void onSuccess(StartTimeBean[] result) {
+                        callback.onClassStartTimeLoaded(result);
+
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+                    }
+                });
+
+
+
 
     }
 
@@ -246,7 +302,27 @@ public class TasksRemoteDataSource implements RemoteDataSource {
     }
 
     @Override
-    public void getClassListTask(@NonNull String area, @NonNull String course, @NonNull String time, @NonNull LoadClassesCallback callback) {
+    public void getClassListTask(@NonNull String area, @NonNull String course, @NonNull String time, @NonNull final LoadClassesCallback callback) {
+        OkHttpUtils<ClassObj[]> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST, I.Request.REQUEST_GET_CLASS)
+                .addParam(I.IClass.B_AREA, area)
+                .addParam(I.IClass.B_COURSE, course)
+                .addParam(I.IClass.START_TIME, time)
+                .targetClass(ClassObj[].class)
+                .execute(new OkHttpUtils.OnCompleteListener<ClassObj[]>() {
+                    @Override
+                    public void onSuccess(ClassObj[] result) {
+                        callback.onClassesLoaded(result);
+
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+                    }
+                });
+
 
     }
 
@@ -276,7 +352,30 @@ public class TasksRemoteDataSource implements RemoteDataSource {
     }
 
     @Override
-    public void registerTask(@NonNull String uid, @NonNull String pwd, @NonNull String username, @NonNull String sex, @NonNull String classId, @NonNull String top_grade, @NonNull registerTaskCallback callback) {
+    public void registerTask(@NonNull String uid, @NonNull String pwd, @NonNull String username, @NonNull String sex, @NonNull String classId, @NonNull String top_grade, @NonNull final registerTaskCallback callback) {
+        OkHttpUtils<Result> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST,I.Request.REQUEST_REGISTER)
+                .addParam(I.User.UID,uid)
+                .addParam(I.User.PWD,pwd)
+                .addParam(I.User.USER_NAME,username)
+                .addParam(I.User.SEX,sex)
+                .addParam(I.User.B_CLASS,classId)
+                .addParam(I.User.TOP_GRADE,top_grade)
+                .post()
+                .targetClass(Result.class)
+                .execute(new OkHttpUtils.OnCompleteListener<Result>() {
+                    @Override
+                    public void onSuccess(Result result) {
+                            callback.onRegisterSuccess(result);
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+                    }
+                });
+
 
     }
 

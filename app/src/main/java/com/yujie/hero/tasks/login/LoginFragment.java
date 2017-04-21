@@ -17,16 +17,13 @@ import android.widget.Toast;
 
 import com.yujie.hero.R;
 import com.yujie.hero.activity.MainActivity;
-import com.yujie.hero.activity.RegisterActivity;
 import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.data.bean.UserBean;
+import com.yujie.hero.tasks.register.RegisterActivity;
 import com.yujie.hero.utils.StartTargetActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-
-import static java.security.AccessController.getContext;
 
 /**
  * Created by Administrator on 2017/4/10 0010.
@@ -53,7 +50,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_login, container, false);
         ButterKnife.bind(this, view);
         mPresenter.checkOnClickButton();
@@ -76,8 +73,14 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
 
     @Override
     public void initUid() {
-
         String userName = sharedPreferences.getString("userName", null);
+        if (userName == null) {
+            UserBean userBean = HeroApplication.getInstance().getCurrentUser();
+            if (userBean != null) {
+
+                userName = userBean.getUid();
+            }
+        }
         Log.e(TAG, "userName=" + userName);
         if (userName != null) {
             loginActivityEditTextInputPhone.setText(userName);
@@ -146,7 +149,6 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
 
         this.mPresenter = presenter;
 
-
     }
 
     @Override
@@ -181,8 +183,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
 
     public static LoginFragment newInstance() {
 
-        LoginFragment fragment = new LoginFragment();
-        return fragment;
+        return new LoginFragment();
     }
 
 }
