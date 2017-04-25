@@ -3,9 +3,11 @@ package com.yujie.hero.activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -91,6 +93,8 @@ public class MainActivity extends AppCompatActivity
     private boolean isCubic = true;
     private boolean hasLabels = true;
 
+    private ResetPwdReceiver mReceiver;
+
     /** select avatar*/
     private OnSetAvatarListener listener;
 
@@ -109,6 +113,15 @@ public class MainActivity extends AppCompatActivity
         initData();
         initChart();
         initAvatarListener();
+        initReceiver();
+
+    }
+
+    private void initReceiver() {
+        mReceiver = new ResetPwdReceiver();
+        IntentFilter filter = new IntentFilter("ResetPwdFinished");
+        registerReceiver(mReceiver, filter);
+
 
     }
 
@@ -639,5 +652,20 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(mContext, stuGrades.get(pointIndex).getExe_tiem(), Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private class ResetPwdReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(mReceiver);
     }
 }

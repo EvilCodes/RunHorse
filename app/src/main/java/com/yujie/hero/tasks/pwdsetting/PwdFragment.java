@@ -1,6 +1,7 @@
 package com.yujie.hero.tasks.pwdsetting;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -48,7 +49,6 @@ public class PwdFragment extends Fragment implements PwdContract.View ,View.OnCl
         ButterKnife.bind(this, view);
         mPresenter.confirmPassword();
         return view;
-
     }
 
 
@@ -86,6 +86,7 @@ public class PwdFragment extends Fragment implements PwdContract.View ,View.OnCl
         HeroApplication.getInstance().setCurrentTestCourse(null);
         HeroApplication.getInstance().setCURRENT_EXAM_ID(0);
         StartTargetActivity.jumpToTargetActivity(context, LoginActivity.class);
+        context.sendBroadcast(new Intent("ResetPwdFinished"));
         getActivity().finish();
 
 
