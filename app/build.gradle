@@ -65,6 +65,6 @@ dependencies {
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
     compile files('libs/jsch-0.1.52.jar')
     compile 'com.zhy:okhttputils:2.0.0'
-//    compile 'com.google.guava:guava:21.0'
+    //    compile 'com.google.guava:guava:21.0'
 }
 

@@ -39,6 +39,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     private SharedPreferences sharedPreferences;
     private static String TAG = LoginFragment.class.getSimpleName();
 
+
     @Bind(R.id.login_activity_EditText_inputPhone)
     EditText loginActivityEditTextInputPhone;
     @Bind(R.id.login_activity_EditText_inputPwd)
@@ -129,7 +130,6 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
 
     @Override
     public void checkEditText() {
-
         userName = loginActivityEditTextInputPhone.getText().toString();
         pwd = loginActivityEditTextInputPwd.getText().toString();
         if (userName.isEmpty()) {
@@ -140,8 +140,6 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
             loginActivityEditTextInputPwd.setError("请输入用户密码");
             loginActivityEditTextInputPwd.requestFocus();
         }
-
-
     }
 
     @Override
@@ -158,8 +156,6 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
         ButterKnife.unbind(this);
         pd.cancel();
     }
-
-
     @Override
     public void onClick(View v) {
 
@@ -171,11 +167,8 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
                 break;
 
             case R.id.login_activity_Button_register:
-
                 Log.e("LoginFragment", "register_button is clicked");
-
                 StartTargetActivity.jumpToTargetActivity(getActivity(), RegisterActivity.class);
-
                 break;
         }
 

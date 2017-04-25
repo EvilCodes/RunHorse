@@ -32,6 +32,15 @@ import java.util.List;
 public interface RemoteDataSource {
 
 
+    interface UploadBestGradesCallback{
+
+        void uploadedBestGrades(Result result);
+
+        void onDataNotAvailable();
+
+    }
+
+
     interface LoadTuserCallback {
 
         void onUserBeanLoginLoaded(UserBean userBeen);
@@ -151,13 +160,13 @@ public interface RemoteDataSource {
     void updateTuserPasswordTask(@NonNull String pwd,  @NonNull LoadTuserCallback callback);
     void saveTuserTask(@NonNull UserBean user, @NonNull int status, @NonNull LoadTuserCallback callback);
 
-    void uploadExerciseGradeTask(@NonNull UserBean currentUser, @NonNull String speed, @NonNull LoadExerciseGradeCallback callback);
+    void uploadExerciseGradeTask(@NonNull UserBean currentUser,@NonNull String nowDate,@NonNull String course_simple_name, @NonNull String speed, @NonNull LoadExerciseGradeCallback callback);
 
-    void uploadExamGradeTask(@NonNull UserBean currentUser, @NonNull String speed,@NonNull LoadExamGradeCallback callback);
+    void uploadExamGradeTask(@NonNull UserBean currentUser, @NonNull String nowDate,@NonNull String course_simple_name,@NonNull String speed,@NonNull LoadExamGradeCallback callback);
     void getExamGradeTask(@NonNull String exam_id,@NonNull LoadExamGradeCallback callback);
 
 
-    void uploadBestGradeTask(@NonNull String uid, @NonNull String speed);
+    void uploadBestGradeTask(@NonNull String uid, @NonNull String speed,@NonNull UploadBestGradesCallback callback);
 
     void getWordContentsTask(@NonNull String course_id, @NonNull LoadWordContentBeansCallback callback);
     void saveWordContens(@NonNull ArrayList<WordContentBean> wordList, @NonNull LoadWordContentBeansCallback callback);
@@ -253,5 +262,7 @@ interface LoadAreasTaskCallback{
                       @NonNull String username, @NonNull String sex,
                       @NonNull String classId, @NonNull String top_grade,
                       @NonNull registerTaskCallback callback);
+
+
 
 }

@@ -2,7 +2,6 @@ package com.yujie.hero.data.source.remote;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.application.I;
@@ -84,7 +83,25 @@ public class TasksRemoteDataSource implements RemoteDataSource {
     }
 
     @Override
-    public void updateTuserPasswordTask(@NonNull String pwd, @NonNull LoadTuserCallback callback) {
+    public void updateTuserPasswordTask(@NonNull String pwd, @NonNull final LoadTuserCallback callback) {
+        OkHttpUtils<Result> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST,I.Request.REQUEST_UPDATE_USER)
+                .addParam(I.User.UID,HeroApplication.getInstance().getCurrentUser().getUid())
+                .addParam(I.User.USER_NAME,HeroApplication.getInstance().getCurrentUser().getUser_name())
+                .addParam(I.User.PWD,pwd)
+                .post()
+                .targetClass(Result.class)
+                .execute(new OkHttpUtils.OnCompleteListener<Result>() {
+                    @Override
+                    public void onSuccess(Result result) {
+                        callback.onTuserPasswordUpdated(result);
+                    }
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+                    }
+                });
 
     }
 
@@ -120,22 +137,69 @@ public class TasksRemoteDataSource implements RemoteDataSource {
         }
     }
 
-
-
     @Override
     public void saveTuserTask(@NonNull UserBean user, @NonNull int status, @NonNull LoadTuserCallback callback) {
 
-    }
-
-    @Override
-    public void uploadExerciseGradeTask(@NonNull UserBean currentUser, @NonNull String speed, @NonNull LoadExerciseGradeCallback callback) {
 
     }
 
     @Override
-    public void uploadExamGradeTask(@NonNull UserBean currentUser, @NonNull String speed, @NonNull LoadExamGradeCallback callback) {
+    public void uploadExerciseGradeTask(@NonNull UserBean currentUser, @NonNull String nowDate, @NonNull String course_simple_name, @NonNull String speed, @NonNull final LoadExerciseGradeCallback callback) {
+
+        OkHttpUtils<Result> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST,I.Request.REQUEST_ADD_EXERCISE_GRADE)
+                .addParam(I.Exercise.GRADE,speed)
+                .addParam(I.Exercise.EXE_TIME,nowDate)
+                .addParam(I.Exercise.COURSE_ID,course_simple_name)
+                .addParam(I.Exercise.USER_NAME,currentUser.getUser_name())
+                .addParam(I.Exercise.B_CLASS,currentUser.getB_class()+"")
+                .addParam(I.Exercise.START_TIME,currentUser.getUid().substring(1,7))
+                .post()
+                .targetClass(Result.class)
+                .execute(new OkHttpUtils.OnCompleteListener<Result>() {
+                    @Override
+                    public void onSuccess(Result result) {
+                        callback.onExerciseGradeUpLoaded(result);
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+                    }
+                });
+    }
+
+    @Override
+    public void uploadExamGradeTask(@NonNull UserBean currentUser, @NonNull String nowDate, @NonNull String course_simple_name, @NonNull String speed, @NonNull final LoadExamGradeCallback callback) {
+        OkHttpUtils<Result> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST,I.Request.REQUEST_ADD_EXAM_GRADE)
+                .addParam(I.ExamGrade.EXAM_ID,HeroApplication.getInstance().getCURRENT_EXAM_ID()+"")
+                .addParam(I.ExamGrade.GRADE,speed)
+                .addParam(I.ExamGrade.SUBMIT_TIME,nowDate)
+                .addParam(I.ExamGrade.USER_NAME,currentUser.getUser_name())
+                .addParam(I.ExamGrade.B_CLASS,currentUser.getB_class()+"")
+                .addParam(I.ExamGrade.COURSE_ID,course_simple_name)
+                .addParam(I.ExamGrade.B_START_TIME,currentUser.getUid().substring(1,7))
+                .post()
+                .targetClass(Result.class)
+                .execute(new OkHttpUtils.OnCompleteListener<Result>() {
+                    @Override
+                    public void onSuccess(Result result) {
+
+                        callback.onExamGradeUpLoaded(result);
+
+                    }
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+                    }
+                });
 
     }
+
+
 
     @Override
     public void getExamGradeTask(@NonNull String exam_id, @NonNull LoadExamGradeCallback callback) {
@@ -143,8 +207,26 @@ public class TasksRemoteDataSource implements RemoteDataSource {
     }
 
     @Override
-    public void uploadBestGradeTask(@NonNull String uid, @NonNull String speed) {
+    public void uploadBestGradeTask(@NonNull String uid, @NonNull String speed, @NonNull final UploadBestGradesCallback callback) {
+        OkHttpUtils<Result> utils = new OkHttpUtils();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST, I.Request.REQUEST_UPDATE_BEST_GRADE)
+                .addParam(I.User.UID, uid)
+                .addParam(I.User.TOP_GRADE, speed + "")
+                .post()
+                .targetClass(Result.class)
+                .execute(new OkHttpUtils.OnCompleteListener<Result>() {
+                    @Override
+                    public void onSuccess(Result result) {
+                        callback.uploadedBestGrades(result);
+                    }
 
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+
+                    }
+                });
     }
 
     @Override
@@ -162,6 +244,7 @@ public class TasksRemoteDataSource implements RemoteDataSource {
                                 saveWordContens(wordContentList,callback);
                                 callback.onWordContentBeansLoaded(wordContentList);
                             } else {
+
                                 callback.onWordContentBeansLoaded(null);
                             }
                         }

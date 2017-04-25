@@ -35,6 +35,7 @@ import com.yujie.hero.data.bean.WordContentBean;
 import com.yujie.hero.db.DataHelper;
 import com.yujie.hero.listener.OnSetAvatarListener;
 import com.yujie.hero.tasks.login.LoginActivity;
+import com.yujie.hero.tasks.pwdsetting.PwdActivity;
 import com.yujie.hero.utils.FileUtils;
 import com.yujie.hero.utils.OkHttpUtils;
 import com.yujie.hero.utils.Utils;
@@ -413,7 +414,7 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.logout){
             logout();
         }else if (id == R.id.point){
-            startActivity(new Intent(mContext,ResetPassWordActivity.class));
+            startActivity(new Intent(mContext, PwdActivity.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
