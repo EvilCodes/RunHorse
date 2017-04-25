@@ -1,6 +1,7 @@
 package com.yujie.hero.tasks.pwdsetting;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.yujie.hero.data.bean.Result;
 import com.yujie.hero.data.bean.UserBean;
@@ -35,8 +36,8 @@ public class PwdPresenter implements PwdContract.Presenter{
 
     @Override
     public void goResetPassword(@NonNull String pwd) {
-       checkPassword();
         if (!pwd.isEmpty()) {
+            Log.e("PwdPresenter", "goResetPassword.begin");
             mRemoteDataSource.updateTuserPasswordTask(pwd, new RemoteDataSource.LoadTuserCallback() {
                 @Override
                 public void onUserBeanLoginLoaded(UserBean userBeen) {

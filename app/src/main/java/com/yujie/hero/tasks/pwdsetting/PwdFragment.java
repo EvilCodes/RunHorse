@@ -114,6 +114,7 @@ public class PwdFragment extends Fragment implements PwdContract.View ,View.OnCl
     public void onClick(View v) {
 
         initData();
+        mPresenter.checkPassword();
 
         if (v.getId() == R.id.resetPwdBtn && pwd.equals(confirmPwd)) {
 
@@ -121,7 +122,7 @@ public class PwdFragment extends Fragment implements PwdContract.View ,View.OnCl
 
             mPresenter.goResetPassword(pwd);
 
-        } else {
+        } else if (!pwd.isEmpty()&&!confirmPwd.isEmpty()){
             showRequestResult("两次输入密码不一致,请重新输入");
         }
 
