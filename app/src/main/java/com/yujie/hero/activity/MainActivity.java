@@ -36,6 +36,7 @@ import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.data.bean.WordContentBean;
 import com.yujie.hero.db.DataHelper;
 import com.yujie.hero.listener.OnSetAvatarListener;
+import com.yujie.hero.tasks.examorexercise.EorEActivity;
 import com.yujie.hero.tasks.login.LoginActivity;
 import com.yujie.hero.tasks.pwdsetting.PwdActivity;
 import com.yujie.hero.utils.FileUtils;
@@ -495,7 +496,7 @@ public class MainActivity extends AppCompatActivity
                             pd.show();
                             downloadContent(examBean.getCourse_id(),"1");
                         }else {
-                            Intent intent = new Intent(mContext,GameActivity.class);
+                            Intent intent = new Intent(mContext,EorEActivity.class);
                             String action_code = examBean.getCourse_id()+","+"1"+","+HeroApplication.EXAM_CODE+","+"0";
                             intent.putExtra("action_code",action_code);
                             startActivity(intent);
@@ -534,7 +535,7 @@ public class MainActivity extends AppCompatActivity
                             pd.show();
                             downloadContent(course_simpleName,time);
                         }else {
-                            Intent intent = new Intent(mContext,GameActivity.class);
+                            Intent intent = new Intent(mContext,EorEActivity.class);
                             String action_code = course_simpleName+","+time+","+HeroApplication.EXERCISE_CODE+","+"0";
                             intent.putExtra("action_code",action_code);
                             startActivity(intent);
@@ -563,12 +564,12 @@ public class MainActivity extends AppCompatActivity
                                 pd.dismiss();
                                 Toast.makeText(MainActivity.this,"单词数据库更新成功",Toast.LENGTH_SHORT).show();
                                 if (HeroApplication.getInstance().getCURRENT_EXAM_ID()!=0){
-                                    Intent intent = new Intent(mContext,GameActivity.class);
+                                    Intent intent = new Intent(mContext,EorEActivity.class);
                                     String action_code = course_simpleName+","+"1"+","+HeroApplication.EXAM_CODE+","+"0";
                                     intent.putExtra("action_code",action_code);
                                     startActivity(intent);
                                 }else {
-                                    Intent intent = new Intent(mContext,GameActivity.class);
+                                    Intent intent = new Intent(mContext,EorEActivity.class);
                                     String action_code = course_simpleName+","+time+","+HeroApplication.EXERCISE_CODE+","+"0";
                                     intent.putExtra("action_code",action_code);
                                     startActivity(intent);

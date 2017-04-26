@@ -21,7 +21,9 @@
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activity.GameActivity" />
+        <!--<activity android:name=".activity.GameActivity" />-->
+        <activity android:name=".tasks.examorexercise.EorEActivity" />
+
         <activity android:name=".activity.ShowSortActivity" />
         <activity android:name=".tasks.login.LoginActivity" />
         <activity android:name=".activity.ExamResultActivity" />

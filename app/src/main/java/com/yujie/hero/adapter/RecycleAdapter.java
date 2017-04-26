@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.R;
-import com.yujie.hero.activity.GameActivity;
 import com.yujie.hero.data.bean.ExerciseBean;
+import com.yujie.hero.tasks.examorexercise.EorEActivity;
 
 import java.util.ArrayList;
 
@@ -91,7 +91,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<ViewHolder> {
         holder.itemChallengeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext,GameActivity.class);
+                Intent intent = new Intent(mContext,EorEActivity.class);
                 String action_code = item.getCourse_id()+","+"1"+","+ HeroApplication.EXERCISE_CODE+","+item.getGrade();
                 intent.putExtra("action_code",action_code);
                 mContext.startActivity(intent);

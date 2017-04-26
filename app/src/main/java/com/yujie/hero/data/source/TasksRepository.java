@@ -249,6 +249,7 @@ public class TasksRepository implements TasksDataSource {
 
     @Override
     public void getWordContentsTask(@NonNull String course_id, @NonNull LoadWordContentBeansCallback callback) {
+        mTasksLocalDataSource.getWordContentsTask(course_id,callback);
 
     }
 

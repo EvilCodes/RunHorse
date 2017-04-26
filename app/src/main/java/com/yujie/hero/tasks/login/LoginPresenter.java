@@ -19,7 +19,6 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     LoginContract.View mLoginFragment;
     TasksRepository mTasksRepository;
-    private String mTaskId;
 
 
     public LoginPresenter(
