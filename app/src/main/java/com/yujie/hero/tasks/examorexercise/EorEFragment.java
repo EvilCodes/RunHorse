@@ -111,11 +111,13 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
         if (s.length() > 0) {
             int pos = s.length() - 1;
             char c = s.charAt(pos);
-            if (c!=contentTxt.charAt(pos)) {
-                s.delete(pos,pos+1);
+            if (c != contentTxt.charAt(pos)) {
+                s.delete(pos, pos + 1);
                 mPresenter.showToast("input error");
+            } else {
+
+                keyCount++;
             }
-            keyCount++;
             if (s.length()==contentTxt.length()){
                 mPresenter.showWordContent(course_simple_name);
                 editContent.setText("");
