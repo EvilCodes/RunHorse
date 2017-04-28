@@ -1,37 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.yujie.hero.view.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.yujie.hero.activity.ExamResultActivity">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#c72b7ef2"
-        app:layout_heightPercent="10%">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="查看排行"
-            android:textColor="#fff"
-            android:textSize="25dp"
-            android:layout_centerInParent="true"/>
-    </RelativeLayout>
-    <com.astuetz.PagerSlidingTabStrip
-        android:layout_width="match_parent"
-        android:id="@+id/examSortTab"
-        android:layout_height="0dp"
-        app:pstsShouldExpand="true"
-        android:textAlignment="center"
-        app:pstsIndicatorHeight="3dp"
-        app:layout_heightPercent="8%"/>
-    <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/ExamsortViewPager"
-        >
-
-    </android.support.v4.view.ViewPager>
-</com.yujie.hero.view.PercentLinearLayout>
+    android:id="@+id/fmExamResult"
+    />

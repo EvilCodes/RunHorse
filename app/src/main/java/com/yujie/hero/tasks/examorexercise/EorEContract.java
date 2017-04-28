@@ -6,7 +6,11 @@ import android.view.View;
 import com.yujie.hero.BasePresenter;
 import com.yujie.hero.BaseView;
 import com.yujie.hero.data.bean.UserBean;
+import com.yujie.hero.data.bean.WordContentBean;
 import com.yujie.hero.tasks.pwdsetting.PwdContract;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/4/24.

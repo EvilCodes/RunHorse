@@ -25,10 +25,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yujie.hero.R;
-import com.yujie.hero.activity.ExamResultActivity;
 import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.data.bean.UserBean;
-import com.yujie.hero.db.DataHelper;
+import com.yujie.hero.tasks.examresult.ExamResultActivity;
 import com.yujie.hero.utils.MCountDownTimer;
 import com.yujie.hero.utils.StartTargetActivity;
 
@@ -65,7 +64,7 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
     private boolean isBegan = false;
     private Dialog dialog;
     private String contentTxt;
-    private String course_simple_name ;
+    private String course_simple_name;
     private String time;
     private String code;
     private int keyCount = 0;
@@ -94,7 +93,7 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        if(!isBegan){
+        if (!isBegan) {
             mc.start();
             isBegan = true;
         }
@@ -103,37 +102,75 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
+//        if (s.length() > 0) {
+////            Log.e("EorFragment", "onTextChanged.s=" + s.toString());
+//            String m =  s.toString();
+////            char c = s.charAt(start);
+////            if (c != contentTxt.charAt(start) && !String.valueOf(contentTxt.charAt(start)).equals(" ")) {
+//////                s.delete(pos, pos + 1);
+////
+////                mPresenter.showToast("input error");
+////                editContent.setSelection(start);
+////            } else if (String.valueOf(contentTxt.charAt(start)).equals(" ")) {
+////                m += " ";
+////
+////            } else if (c == contentTxt.charAt(start)) {
+////
+////                keyCount++;
+////            }
+//////            s = m;
+//            editContent.setText(m);
+//            editContent.setSelection(start+before);
+////
+////            Log.e("Eorfragment", "keyCount=" + keyCount);
+//////            if (s.length() == contentTxt.length()) {
+//////                mPresenter.showWordContent(course_simple_name);
+//////                editContent.setText("");
+//////            }
+//        }
 
     }
 
     @Override
     public void afterTextChanged(Editable s) {
         if (s.length() > 0) {
-            int pos = s.length() - 1;
-            char c = s.charAt(pos);
-            if (c != contentTxt.charAt(pos)) {
-                s.delete(pos, pos + 1);
+            Log.e("EorFragment", "afterTextchanged.s=" + s.toString());
+//            String m = s.toString();
+            int start = s.length() - 1;
+            char c = s.charAt(start);
+            if (c != contentTxt.charAt(start) && !String.valueOf(contentTxt.charAt(start)).equals(" ")) {
+//                s.delete(pos, pos + 1);
+
                 mPresenter.showToast("input error");
-            } else {
+            } else if (String.valueOf(contentTxt.charAt(start)).equals(" ")) {
+
+//                m += " ";
+//
+            } else if (c == contentTxt.charAt(start)) {
 
                 keyCount++;
             }
-            if (s.length()==contentTxt.length()){
+
+            Log.e("Eorfragment", "keyCount=" + keyCount);
+            if (s.length() == contentTxt.length()) {
                 mPresenter.showWordContent(course_simple_name);
                 editContent.setText("");
             }
         }
-
     }
+
+
+
+
 
     @Override
     public void showRunHorse() {
         ivRunhorse.setImageResource(R.drawable.horses_running);
-        TranslateAnimation animation = new TranslateAnimation(0,1000,0,0);
+        TranslateAnimation animation = new TranslateAnimation(0, 1000, 0, 0);
         animation.setDuration(5000);
         ivRunhorse.setAnimation(animation);
         ivRunhorse.setBackgroundColor(Color.TRANSPARENT);
-        AnimationDrawable anima= (AnimationDrawable) ivRunhorse.getDrawable();
+        AnimationDrawable anima = (AnimationDrawable) ivRunhorse.getDrawable();
         anima.start();
 
         ivSlowhorse.setImageResource(R.drawable.horses_running);
@@ -145,18 +182,18 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
 
     @Override
     public void initTitle() {
-        String action_code =getActivity().getIntent().getStringExtra("action_code");
+        String action_code = getActivity().getIntent().getStringExtra("action_code");
         Log.e("EorEFragment", "action_code=" + action_code);
-        if (action_code!=null){
+        if (action_code != null) {
             String[] action = action_code.split(",");
             course_simple_name = action[0];
             time = action[1];
             code = action[2];
             challengePoint = Integer.parseInt(action[3]);
         }
-        mPresenter.initCountDownTimer((Long.parseLong(time)) * 60 * 1000,1000);
-        timer.setText((Integer.parseInt(time)*60)+"");
-        point.setText(HeroApplication.getInstance().getCurrentUser().getTop_grade()+"");
+        mPresenter.initCountDownTimer((Long.parseLong(time)) * 60 * 1000, 1000);
+        timer.setText((Integer.parseInt(time) * 60) + "");
+        point.setText(HeroApplication.getInstance().getCurrentUser().getTop_grade() + "");
         sporter.setText(HeroApplication.getInstance().getCurrentUser().getUser_name());
         course.setText(HeroApplication.getInstance().getCurrentTestCourse());
 
@@ -165,8 +202,14 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
     @Override
     public void getWordContent(String contentTxt) {
         //解决contentText.chatAt()为空指针的错误
-        this.contentTxt = contentTxt;
         wordContent.setText(contentTxt);
+        this.contentTxt = contentTxt;
+//        String[] split = contentTxt.split(" ");
+//        StringBuilder builder = new StringBuilder();
+//        for (String word : split) {
+//            builder.append(word);
+//        }
+//        this.contentTxt = builder.toString();
 
 
     }
@@ -179,15 +222,16 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
 
     @Override
     public void initCountDownTimer(long millisInFuture, long countDownInterval) {
-        mc=new MCountDownTimer(millisInFuture,countDownInterval) {
+        mc = new MCountDownTimer(millisInFuture, countDownInterval) {
             @Override
             public void onTick(long millisUntilFinished) {
-                if (getActivity().isFinishing()){
+                if (getActivity().isFinishing()) {
                     mc.cancel();
-                }else {
+                } else {
                     long l = millisUntilFinished / 1000;
-                    timer.setText(""+l);
-                    currentSpeed.setText((int)(((float)keyCount/((Integer.parseInt(time)*60)-l))*60)+"");
+                    timer.setText("" + l);
+                    Log.e("initCountDowntime", "keyCount=" + keyCount);
+                    currentSpeed.setText((int) (((float) keyCount / ((Integer.parseInt(time) * 60) - l)) * 60) + "");
                 }
 
             }
@@ -199,9 +243,9 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
                 final String speed = currentSpeed.getText().toString();
                 final UserBean currentUser = HeroApplication.getInstance().getCurrentUser();
                 if (code.equals(HeroApplication.EXERCISE_CODE)) {
-                    mPresenter.addExerciseGreade(currentUser,speed,course_simple_name,challengePoint);
+                    mPresenter.addExerciseGreade(currentUser, speed, course_simple_name, challengePoint);
                 } else if (code.equals(HeroApplication.EXAM_CODE)) {
-                    mPresenter.addExamGrades(currentUser,speed,course_simple_name);
+                    mPresenter.addExamGrades(currentUser, speed, course_simple_name);
                 }
                 if (Integer.parseInt(speed) > currentUser.getTop_grade()) {
                     mPresenter.showDialog("成绩单", "你本次的打字速度是:" + speed + ",你成功超越了自己", new DialogInterface.OnClickListener() {
@@ -259,16 +303,16 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
         };
 
 
-
     }
 
-//实现Dialog接口方法的自定义即接口传参
+    //实现Dialog接口方法的自定义即接口传参
     @Override
-    public void showDialog(String title, String message, DialogInterface.OnClickListener clickListener, DialogInterface.OnKeyListener keyListener) {
-        dialog=new AlertDialog.Builder(context)
+    public void showDialog(String title, String message, DialogInterface.OnClickListener
+            clickListener, DialogInterface.OnKeyListener keyListener) {
+        dialog = new AlertDialog.Builder(context)
                 .setTitle(title)
                 .setMessage(message)
-                .setPositiveButton("Ok",clickListener)
+                .setPositiveButton("Ok", clickListener)
                 .setOnKeyListener(keyListener)
                 .setCancelable(false)
                 .create();
@@ -278,12 +322,12 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
 
     @Override
     public void showToast(String msg) {
-        Toast.makeText(context,msg,Toast.LENGTH_LONG).show();
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void setPresenter(EorEContract.Presenter presenter) {
-        mPresenter=presenter;
+        mPresenter = presenter;
 
     }
 
