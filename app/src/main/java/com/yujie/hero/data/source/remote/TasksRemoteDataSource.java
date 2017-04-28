@@ -10,7 +10,9 @@ import com.yujie.hero.data.bean.ClassExamGradeBean;
 import com.yujie.hero.data.bean.ClassObj;
 import com.yujie.hero.data.bean.CourseBean;
 import com.yujie.hero.data.bean.ExamBean;
+import com.yujie.hero.data.bean.ExamClassGradeBean;
 import com.yujie.hero.data.bean.ExamGradeAvgBean;
+import com.yujie.hero.data.bean.ExamResultBean;
 import com.yujie.hero.data.bean.ExerciseBean;
 import com.yujie.hero.data.bean.Result;
 import com.yujie.hero.data.bean.StartTimeBean;
@@ -82,6 +84,11 @@ public class TasksRemoteDataSource implements RemoteDataSource {
                 });
     }
 
+    /**
+     * 参数待修改
+     * @param pwd
+     * @param callback
+     */
     @Override
     public void updateTuserPasswordTask(@NonNull String pwd, @NonNull final LoadTuserCallback callback) {
         OkHttpUtils<Result> utils = new OkHttpUtils<>();
@@ -106,7 +113,23 @@ public class TasksRemoteDataSource implements RemoteDataSource {
     }
 
     @Override
-    public void getExamAvgGrade(@NonNull String exam_id, @NonNull LoadExamAvgGradeCallback callback) {
+    public void getExamAvgGrade(@NonNull String exam_id, @NonNull final LoadExamAvgGradeCallback callback) {
+        OkHttpUtils<ExamGradeAvgBean[]> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST,I.Request.REQUEST_GET_CLASS_AVG_GRADE)
+                .addParam(I.ExamGrade.EXAM_ID,exam_id)
+                .targetClass(ExamGradeAvgBean[].class)
+                .execute(new OkHttpUtils.OnCompleteListener<ExamGradeAvgBean[]>() {
+                    @Override
+                    public void onSuccess(ExamGradeAvgBean[] result) {
+                        callback.onExamAvgGradeLoaded(result);
+                    }
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+
+                    }
+                });
 
     }
 
@@ -116,7 +139,24 @@ public class TasksRemoteDataSource implements RemoteDataSource {
     }
 
     @Override
-    public void getClassGrade(@NonNull String exam_id, @NonNull String b_class, @NonNull LoadClassGradeCallback callback) {
+    public void getClassGrade(@NonNull String exam_id, @NonNull String b_class, @NonNull final LoadClassGradeCallback callback) {
+        OkHttpUtils<ExamClassGradeBean[]> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST,I.Request.REQUEST_GET_CLASS_GRADE_LIST)
+                .addParam(I.ExamGrade.EXAM_ID,exam_id)
+                .addParam(I.ExamGrade.B_CLASS,b_class)
+                .targetClass(ExamClassGradeBean[].class)
+                .execute(new OkHttpUtils.OnCompleteListener<ExamClassGradeBean[]>() {
+                    @Override
+                    public void onSuccess(ExamClassGradeBean[] result) {
+                       callback.onClassGradeLoaded(result);
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+                    }
+                });
 
     }
 
@@ -202,7 +242,25 @@ public class TasksRemoteDataSource implements RemoteDataSource {
 
 
     @Override
-    public void getExamGradeTask(@NonNull String exam_id, @NonNull LoadExamGradeCallback callback) {
+    public void getExamGradeTask(@NonNull String exam_id, @NonNull final LoadExamGradeCallback callback) {
+        OkHttpUtils<ExamResultBean[]> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST, I.Request.REQUEST_GET_EXAM_GRADE)
+                .addParam(I.ExamGrade.EXAM_ID, exam_id)
+                .targetClass(ExamResultBean[].class)
+                .execute(new OkHttpUtils.OnCompleteListener<ExamResultBean[]>() {
+                    @Override
+                    public void onSuccess(ExamResultBean[] result) {
+                        callback.onExamGradeLoaded(result);
+
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+
+                    }
+                });
 
     }
 
@@ -262,7 +320,25 @@ public class TasksRemoteDataSource implements RemoteDataSource {
 
 
     @Override
-    public void getNearlyExerciseGrades(@NonNull String username, @NonNull LoadExerciseGradeCallback callback) {
+    public void getNearlyExerciseGrades(@NonNull String username, @NonNull final LoadExerciseGradeCallback callback) {
+        OkHttpUtils<ExerciseBean[]> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST, I.Request.REQUEST_GETNEARLYGRADES)
+                .addParam(I.User.USER_NAME, username)
+                .targetClass(ExerciseBean[].class)
+                .execute(new OkHttpUtils.OnCompleteListener<ExerciseBean[]>() {
+                    @Override
+                    public void onSuccess(ExerciseBean[] result) {
+                        callback.onExerciseGradeNearlyLoaded(result);
+
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+
+                    }
+                });
 
     }
 
@@ -421,6 +497,7 @@ public class TasksRemoteDataSource implements RemoteDataSource {
 
     @Override
     public void getExamNowTask(@NonNull LoadExamNowCallback callback) {
+
 
     }
 

@@ -11,6 +11,7 @@ import com.yujie.hero.data.bean.ClassExamGradeBean;
 import com.yujie.hero.data.bean.ClassObj;
 import com.yujie.hero.data.bean.CourseBean;
 import com.yujie.hero.data.bean.ExamBean;
+import com.yujie.hero.data.bean.ExamClassGradeBean;
 import com.yujie.hero.data.bean.ExamGradeAvgBean;
 import com.yujie.hero.data.bean.ExamResultBean;
 import com.yujie.hero.data.bean.ExerciseBean;
@@ -135,7 +136,7 @@ public interface RemoteDataSource {
 
     interface LoadClassGradeCallback{
 
-        void onClassGradeLoaded(ClassExamGradeBean[] result);
+        void onClassGradeLoaded(ExamClassGradeBean[] result);
 
         void onGlassGradeSaved(boolean isSaved);
 

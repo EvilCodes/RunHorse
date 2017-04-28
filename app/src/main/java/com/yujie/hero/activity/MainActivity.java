@@ -35,7 +35,7 @@ import com.yujie.hero.data.bean.ExerciseBean;
 import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.data.bean.WordContentBean;
 import com.yujie.hero.db.DataHelper;
-import com.yujie.hero.listener.OnSetAvatarListener;
+import com.yujie.hero.utils.OnSetAvatarListener;
 import com.yujie.hero.tasks.examorexercise.EorEActivity;
 import com.yujie.hero.tasks.login.LoginActivity;
 import com.yujie.hero.tasks.pwdsetting.PwdActivity;

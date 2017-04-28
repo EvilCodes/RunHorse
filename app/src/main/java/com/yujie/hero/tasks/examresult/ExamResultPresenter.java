@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.yujie.hero.fragment.ExamSortFragment;
-import com.yujie.hero.fragment.SortAvgClassFragment;
+import com.yujie.hero.tasks.examresult.examsort.ExamSortFragment;
+import com.yujie.hero.tasks.examresult.sortavgclass.SortAvgFragment;
 
 /**
  * Created by Administrator on 2017/4/24.
@@ -28,7 +28,7 @@ public class ExamResultPresenter implements ExamResultContract.Presenter{
                     case 0:
                         return new ExamSortFragment();
                     case 1:
-                        return new SortAvgClassFragment();
+                        return new SortAvgFragment();
                 }
                 return null;
             }

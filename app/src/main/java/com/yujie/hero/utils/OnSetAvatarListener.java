@@ -1,4 +1,4 @@
-package com.yujie.hero.listener;
+package com.yujie.hero.utils;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -21,8 +21,6 @@ import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.application.I;
 import com.yujie.hero.R;
 import com.yujie.hero.data.bean.Result;
-import com.yujie.hero.utils.FileUtils;
-import com.yujie.hero.utils.OkHttpUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

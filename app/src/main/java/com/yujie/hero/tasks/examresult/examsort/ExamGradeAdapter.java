@@ -1,7 +1,6 @@
-package com.yujie.hero.adapter;
+package com.yujie.hero.tasks.examresult.examsort;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,10 +10,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.R;
-import com.yujie.hero.data.bean.ExerciseBean;
-import com.yujie.hero.tasks.examorexercise.EorEActivity;
+import com.yujie.hero.data.bean.ExamResultBean;
+import com.yujie.hero.tasks.adapter.RecycleAdapter;
 
 import java.util.ArrayList;
 
@@ -22,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by yujie on 16-9-14.
  */
-class ViewHolder extends RecyclerView.ViewHolder {
+class GradeViewHolder extends RecyclerView.ViewHolder {
     ImageView levelAvatar;
     TextView levelNumber;
     TextView itemUserName;
@@ -31,7 +29,7 @@ class ViewHolder extends RecyclerView.ViewHolder {
     CardView itemCardRoot;
 
 
-    public ViewHolder(View itemView) {
+    public GradeViewHolder(View itemView) {
         super(itemView);
         itemCardRoot = (CardView) itemView.findViewById(R.id.item_card_root);
         levelNumber = (TextView) itemView.findViewById(R.id.level_number);
@@ -41,34 +39,35 @@ class ViewHolder extends RecyclerView.ViewHolder {
         itemChallengeBtn = (Button) itemView.findViewById(R.id.item_challenge_btn);
     }
 }
-public class RecycleAdapter extends RecyclerView.Adapter<ViewHolder> {
+
+public class ExamGradeAdapter extends RecyclerView.Adapter<GradeViewHolder> {
     public static final String TAG = RecycleAdapter.class.getSimpleName();
     private Context mContext;
     private LayoutInflater inflater;
-    private ArrayList<ExerciseBean> data;
+    private ArrayList<ExamResultBean> data;
     private OnItemClickListener listener;
 
     public void setListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    public RecycleAdapter(Context context, ArrayList<ExerciseBean> data) {
+    public ExamGradeAdapter(Context context, ArrayList<ExamResultBean> data) {
         this.mContext = context;
         inflater = LayoutInflater.from(mContext);
         this.data = data;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public GradeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.recycler_item_layout, parent, false);
-        ViewHolder holder = new ViewHolder(view);
+        GradeViewHolder holder = new GradeViewHolder(view);
         holder.setIsRecyclable(true);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        final ExerciseBean item = getItem(position);
+    public void onBindViewHolder(final GradeViewHolder holder, int position) {
+        final ExamResultBean item = getItem(position);
         if (position<3){
             holder.levelNumber.setVisibility(View.GONE);
             holder.levelAvatar.setVisibility(View.VISIBLE);
@@ -87,19 +86,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<ViewHolder> {
             holder.levelAvatar.setVisibility(View.GONE);
             holder.levelNumber.setText((position+1)+"");
         }
+        holder.itemChallengeBtn.setVisibility(View.GONE);
         holder.itemUserName.setText(item.getUser_name());
-        holder.itemChallengeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext,EorEActivity.class);
-                String action_code = item.getCourse_id()+","+"1"+","+ HeroApplication.EXERCISE_CODE+","+item.getGrade();
-                intent.putExtra("action_code",action_code);
-                mContext.startActivity(intent);
-            }
-        });
-        if (item.getUser_name().equals(HeroApplication.getInstance().getCurrentUser().getUser_name())){
-            holder.itemChallengeBtn.setVisibility(View.GONE);
-        }
         holder.itemUserGrade.setText(item.getGrade()+"");
         if (listener!=null){
             holder.itemCardRoot.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +99,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<ViewHolder> {
         }
     }
 
-    public ExerciseBean getItem(int position){
+    public ExamResultBean getItem(int position){
         return data.get(position);
     }
 
@@ -120,7 +108,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<ViewHolder> {
         return data.size();
     }
 
-    public void addData(ArrayList<ExerciseBean> list){
+    public void addData(ArrayList<ExamResultBean> list){
         if (list.size()==0 | list==null){
             return;
         }
@@ -130,6 +118,6 @@ public class RecycleAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     public interface OnItemClickListener{
-        void onItemClickListener(View v,int position,ExerciseBean item);
+        void onItemClickListener(View v, int position, ExamResultBean item);
     }
 }
