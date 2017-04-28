@@ -35,6 +35,7 @@ import com.yujie.hero.data.bean.ExerciseBean;
 import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.data.bean.WordContentBean;
 import com.yujie.hero.db.DataHelper;
+import com.yujie.hero.tasks.checkorder.CheckOrderActivity;
 import com.yujie.hero.utils.OnSetAvatarListener;
 import com.yujie.hero.tasks.examorexercise.EorEActivity;
 import com.yujie.hero.tasks.login.LoginActivity;
@@ -420,7 +421,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.getTenGrades) {
             getTenGrades();
         } else if (id == R.id.getClassSort) {
-            startActivity(new Intent(mContext,ShowSortActivity.class));
+            startActivity(new Intent(mContext,CheckOrderActivity.class));
         } else if (id == R.id.startExam) {
             goExam();
         } else if (id == R.id.startExercise) {

@@ -23,11 +23,13 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".tasks.examorexercise.EorEActivity" />
 
-        <activity android:name=".activity.ShowSortActivity" />
+        <!--<activity android:name=".activity.ShowSortActivity" />-->
         <activity android:name=".tasks.login.LoginActivity" />
         <activity android:name=".tasks.register.RegisterActivity" />
         <activity android:name=".tasks.pwdsetting.PwdActivity" />
         <activity android:name=".tasks.examresult.ExamResultActivity" />
+        <activity android:name=".tasks.checkorder.CheckOrderActivity" />
+
 
     </application>
 
