@@ -1,4 +1,4 @@
-package com.yujie.hero.fragment;
+package com.yujie.hero.tasks.checkorder.sorttime;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,12 +12,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.yujie.hero.application.HeroApplication;
-import com.yujie.hero.application.I;
 import com.yujie.hero.R;
-import com.yujie.hero.tasks.adapter.RecycleAdapter;
+import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.data.bean.ExerciseBean;
-import com.yujie.hero.utils.OkHttpUtils;
+import com.yujie.hero.data.bean.Result;
+import com.yujie.hero.data.source.RemoteDataSource;
+import com.yujie.hero.data.source.remote.TasksRemoteDataSource;
+import com.yujie.hero.tasks.adapter.RecycleAdapter;
 import com.yujie.hero.utils.Utils;
 
 import java.util.ArrayList;
@@ -35,15 +36,19 @@ import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.LineChartView;
 
-public class SortCourseFragment extends Fragment {
-    public static final String TAG = SortCourseFragment.class.getSimpleName();
-    @Bind(R.id.gradeOfUser)
-    TextView gradeOfUser;
-    private Context mContext;
+/**
+ * Created by BlackFox on 2017/5/1.
+ */
+
+public class SortTimeFragment extends Fragment implements SortTimeContract.View, LineChartOnValueSelectListener {
     @Bind(R.id.dataRecyclerView)
     RecyclerView dataRecyclerView;
+    @Bind(R.id.gradeOfUser)
+    TextView gradeOfUser;
     @Bind(R.id.dataLineChartView)
     LineChartView dataLineChartView;
+    private Context mContext;
+    private SortTimePresenter mPresenter;
     LineChartData data;
     ArrayList<ExerciseBean> grades;
     private LinearLayoutManager manager;
@@ -66,38 +71,78 @@ public class SortCourseFragment extends Fragment {
 
     ArrayList<ExerciseBean> personData;
 
-    public SortCourseFragment() {
-        // Required empty public constructor
-    }
-
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sort_class, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mContext = getContext();
+        View view = inflater.from(mContext).inflate(R.layout.fragment_sort_class, container, false);
         ButterKnife.bind(this, view);
-        mContext = getActivity();
-        initData();
-        initListener();
-        resetViewport();
+        mPresenter = new SortTimePresenter(this, TasksRemoteDataSource.getInstance());
+        mPresenter.initData(HeroApplication.getInstance().getCurrentUser().getUid().substring(1, 7));
+        mPresenter.setListener();
+        mPresenter.resetViewPort();
         return view;
     }
 
-    private void initListener() {
-        dataLineChartView.setViewportCalculationEnabled(false);
-        dataLineChartView.setOnValueTouchListener(new LineChartOnValueSelectListener() {
+    @Override
+    public void showToast(String msg) {
+        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void getData(ArrayList<ExerciseBean> grades) {
+        adapter = new RecycleAdapter(mContext, grades);
+        manager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+        dataRecyclerView.setLayoutManager(manager);
+        dataRecyclerView.setAdapter(adapter);
+        if (grades.size() == 0 | grades == null) {
+            return;
+        }
+        mPresenter.initNearlyGrades(grades.get(0).getUser_name(), new RemoteDataSource.LoadExerciseGradeCallback() {
             @Override
-            public void onValueSelected(int i, int i1, PointValue pointValue) {
-                Toast.makeText(mContext, personData.get(i1).getExe_tiem(), Toast.LENGTH_SHORT).show();
+            public void onExerciseGradeUpLoaded(Result result) {
+
             }
 
             @Override
-            public void onValueDeselected() {
+            public void onExerciseGradeNearlyLoaded(ExerciseBean[] result) {
+                if (result != null & result.length != 0) {
+                    numberOfPoints = result.length;
+                    personData = Utils.array2List(result);
+                    reset();
+                    generateData();
+                }
+
+
+            }
+
+            @Override
+            public void onExerciseTenGradesLoaded(ExerciseBean[] result) {
+
+            }
+
+            @Override
+            public void onDataNotAvailable() {
+                showToast("网络不通畅,请稍后再试");
 
             }
         });
+        mPresenter.initAdapter();
+
+
     }
 
-    private void resetViewport() {
+    @Override
+    public void setListener() {
+        dataLineChartView.setViewportCalculationEnabled(false);
+        dataLineChartView.setOnValueTouchListener(this);
+
+
+    }
+
+    @Override
+    public void resetViewPort() {
         final Viewport v = new Viewport(dataLineChartView.getMaximumViewport());
         v.bottom = 0;
         v.top = 500;
@@ -105,18 +150,23 @@ public class SortCourseFragment extends Fragment {
         v.right = numberOfPoints;
         dataLineChartView.setMaximumViewport(v);
         dataLineChartView.setCurrentViewport(v);
+
     }
 
-    private void prepareDataAnimation(ArrayList<ExerciseBean> personData) {
+    @Override
+    public void prepareDataAnimation(ArrayList<ExerciseBean> personData) {
         for (Line line : data.getLines()) {
             for (int i = 0; i < numberOfPoints; i++) {
                 PointValue value = line.getValues().get(i);
                 value.setTarget(i, personData.get(i).getGrade());
             }
         }
+
     }
 
-    private void reset() {
+
+    @Override
+    public void reset() {
         numberOfLines = 1;
 
         hasAxes = true;
@@ -129,13 +179,13 @@ public class SortCourseFragment extends Fragment {
         isCubic = false;
         hasLabelForSelected = false;
         pointsHaveDifferentColor = false;
-
         dataLineChartView.setValueSelectionEnabled(hasLabelForSelected);
-        resetViewport();
+        mPresenter.resetViewPort();
+
     }
 
-    private void generateData() {
-
+    @Override
+    public void generateData() {
         List<Line> lines = new ArrayList<Line>();
         for (int i = 0; i < numberOfLines; ++i) {
             List<PointValue> values = new ArrayList<PointValue>();
@@ -179,25 +229,20 @@ public class SortCourseFragment extends Fragment {
 
     }
 
-    private void initAdapter() {
+    @Override
+    public void initAdapter() {
         adapter.setListener(new RecycleAdapter.OnItemClickListener() {
             @Override
             public void onItemClickListener(View v, int position, ExerciseBean item) {
-                gradeOfUser.setText(item.getUser_name()+"最近的练习成绩");
-                initPersonData(item);
-            }
-        });
-    }
-
-    private void initPersonData(ExerciseBean item) {
-        OkHttpUtils<ExerciseBean[]> utils = new OkHttpUtils();
-        utils.url(HeroApplication.SERVER_ROOT)
-                .addParam(I.REQUEST, I.Request.REQUEST_GETNEARLYGRADES)
-                .addParam(I.User.USER_NAME, item.getUser_name())
-                .targetClass(ExerciseBean[].class)
-                .execute(new OkHttpUtils.OnCompleteListener<ExerciseBean[]>() {
+                gradeOfUser.setText(item.getUser_name() + "最近的练习成绩");
+                mPresenter.initNearlyGrades(item.getUser_name(), new RemoteDataSource.LoadExerciseGradeCallback() {
                     @Override
-                    public void onSuccess(ExerciseBean[] result) {
+                    public void onExerciseGradeUpLoaded(Result result) {
+
+                    }
+
+                    @Override
+                    public void onExerciseGradeNearlyLoaded(ExerciseBean[] result) {
                         if (result != null & result.length != 0) {
                             if (numberOfPoints == result.length) {
                                 personData.clear();
@@ -212,76 +257,35 @@ public class SortCourseFragment extends Fragment {
                                 generateData();
                             }
                         } else {
-                            Toast.makeText(mContext, "the student have no exercise data", Toast.LENGTH_LONG).show();
+                            Toast.makeText(mContext, "该学生还未进行练习", Toast.LENGTH_SHORT).show();
                         }
+
                     }
 
                     @Override
-                    public void onError(String error) {
-                        Toast.makeText(getActivity(),"网络不通畅,请稍后再试",Toast.LENGTH_LONG).show();
+                    public void onExerciseTenGradesLoaded(ExerciseBean[] result) {
+
+                    }
+
+                    @Override
+                    public void onDataNotAvailable() {
+
                     }
                 });
-    }
+            }
+        });
 
-    private void initData() {
-        grades = new ArrayList<>();
-        OkHttpUtils<ExerciseBean[]> utils = new OkHttpUtils<>();
-        utils.url(HeroApplication.SERVER_ROOT)
-                .addParam(I.REQUEST, I.Request.REQUEST_GET_SORT_IN_COURSE)
-                .addParam(I.Exercise.COURSE_ID, HeroApplication.getInstance().getCurrentUser().getUid().substring(0, 1))
-                .targetClass(ExerciseBean[].class)
-                .execute(new OkHttpUtils.OnCompleteListener<ExerciseBean[]>() {
-                    @Override
-                    public void onSuccess(ExerciseBean[] result) {
-                        if (result != null & result.length!=0) {
-                            grades = Utils.array2List(result);
-                            adapter = new RecycleAdapter(mContext, grades);
-                            manager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
-                            dataRecyclerView.setLayoutManager(manager);
-                            dataRecyclerView.setAdapter(adapter);
-                            if (grades.size() == 0 | grades == null) {
-                                return;
-                            }
-                            initChart(grades);
-                            initAdapter();
-                        }
-                    }
-
-                    @Override
-                    public void onError(String error) {
-                        Toast.makeText(getActivity(),"网络不通畅,请稍后再试",Toast.LENGTH_LONG).show();
-                    }
-                });
-    }
-
-    private void initChart(ArrayList<ExerciseBean> grades) {
-        personData = new ArrayList<>();
-        OkHttpUtils<ExerciseBean[]> utils = new OkHttpUtils<>();
-        utils.url(HeroApplication.SERVER_ROOT)
-                .addParam(I.REQUEST, I.Request.REQUEST_GETNEARLYGRADES)
-                .addParam(I.User.USER_NAME, grades.get(0).getUser_name())
-                .targetClass(ExerciseBean[].class)
-                .execute(new OkHttpUtils.OnCompleteListener<ExerciseBean[]>() {
-                    @Override
-                    public void onSuccess(ExerciseBean[] result) {
-                        if (result != null & result.length != 0) {
-                            numberOfPoints = result.length;
-                            personData = Utils.array2List(result);
-                            reset();
-                            generateData();
-                        }
-                    }
-
-                    @Override
-                    public void onError(String error) {
-                        Toast.makeText(getActivity(),"网络不通畅,请稍后再试",Toast.LENGTH_LONG).show();
-                    }
-                });
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onValueSelected(int i, int i1, PointValue pointValue) {
+        showToast(personData.get(i1).getExe_tiem());
+
+    }
+
+    @Override
+    public void onValueDeselected() {
+
     }
 
     @Override

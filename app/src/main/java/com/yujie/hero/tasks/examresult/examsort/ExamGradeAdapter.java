@@ -17,29 +17,6 @@ import com.yujie.hero.tasks.adapter.RecycleAdapter;
 import java.util.ArrayList;
 
 
-/**
- * Created by yujie on 16-9-14.
- */
-class GradeViewHolder extends RecyclerView.ViewHolder {
-    ImageView levelAvatar;
-    TextView levelNumber;
-    TextView itemUserName;
-    TextView itemUserGrade;
-    Button itemChallengeBtn;
-    CardView itemCardRoot;
-
-
-    public GradeViewHolder(View itemView) {
-        super(itemView);
-        itemCardRoot = (CardView) itemView.findViewById(R.id.item_card_root);
-        levelNumber = (TextView) itemView.findViewById(R.id.level_number);
-        levelAvatar = (ImageView) itemView.findViewById(R.id.level_avatar);
-        itemUserName = (TextView) itemView.findViewById(R.id.item_user_name);
-        itemUserGrade = (TextView) itemView.findViewById(R.id.item_user_grade);
-        itemChallengeBtn = (Button) itemView.findViewById(R.id.item_challenge_btn);
-    }
-}
-
 public class ExamGradeAdapter extends RecyclerView.Adapter<GradeViewHolder> {
     public static final String TAG = RecycleAdapter.class.getSimpleName();
     private Context mContext;

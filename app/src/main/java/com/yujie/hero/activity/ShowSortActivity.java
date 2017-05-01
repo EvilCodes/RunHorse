@@ -9,9 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.yujie.hero.R;
-import com.yujie.hero.fragment.SortClassFragment;
-import com.yujie.hero.fragment.SortCourseFragment;
-import com.yujie.hero.fragment.SortTimeFragment;
+import com.yujie.hero.tasks.checkorder.sortclass.SortClassFragment;
+import com.yujie.hero.tasks.checkorder.sortcourse.SortCourseFragment;
+import com.yujie.hero.tasks.checkorder.sorttime.SortTimeFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

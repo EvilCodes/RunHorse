@@ -1,7 +1,9 @@
 package com.yujie.hero.data.source.remote;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.application.I;
@@ -19,6 +21,7 @@ import com.yujie.hero.data.bean.StartTimeBean;
 import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.data.bean.WordContentBean;
 import com.yujie.hero.data.source.RemoteDataSource;
+import com.yujie.hero.tasks.adapter.RecycleAdapter;
 import com.yujie.hero.utils.OkHttpUtils;
 import com.yujie.hero.utils.Utils;
 
@@ -348,7 +351,24 @@ public class TasksRemoteDataSource implements RemoteDataSource {
     }
 
     @Override
-    public void getExerciseGradeSortInTime(@NonNull String startTime, @NonNull LoadExerciseSortInTimeCallback callback) {
+    public void getExerciseGradeSortInTime(@NonNull String startTime, @NonNull final LoadExerciseSortInTimeCallback callback) {
+        OkHttpUtils<ExerciseBean[]> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST, I.Request.REQUEST_GET_SORT_IN_TIME)
+                .addParam(I.Exercise.START_TIME, startTime)
+                .targetClass(ExerciseBean[].class)
+                .execute(new OkHttpUtils.OnCompleteListener<ExerciseBean[]>() {
+                    @Override
+                    public void onSuccess(ExerciseBean[] result) {
+                        callback.onExerciseSortInTimeLoaded(result);
+
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+                    }
+                });
 
     }
 
@@ -358,7 +378,23 @@ public class TasksRemoteDataSource implements RemoteDataSource {
     }
 
     @Override
-    public void getExerciseGradeSortInClass(@NonNull int b_class, @NonNull LoadExerciseSortInClassCallback callback) {
+    public void getExerciseGradeSortInClass(@NonNull String b_class, @NonNull final LoadExerciseSortInClassCallback callback) {
+        OkHttpUtils<ExerciseBean[]> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST, I.Request.REQUEST_GET_SORT_IN_CLASS)
+                .addParam(I.User.B_CLASS, b_class)
+                .targetClass(ExerciseBean[].class)
+                .execute(new OkHttpUtils.OnCompleteListener<ExerciseBean[]>() {
+                    @Override
+                    public void onSuccess(ExerciseBean[] result) {
+                        callback.onExerciseSortInClass(result);
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+                    }
+                });
 
     }
 
@@ -368,7 +404,23 @@ public class TasksRemoteDataSource implements RemoteDataSource {
     }
 
     @Override
-    public void getExerciseGradeSortInCourse(@NonNull String courseId, @NonNull LoadExerciseSortInCourseCallback callback) {
+    public void getExerciseGradeSortInCourse(@NonNull String courseId, @NonNull final LoadExerciseSortInCourseCallback callback) {
+        OkHttpUtils<ExerciseBean[]> utils = new OkHttpUtils<>();
+        utils.url(HeroApplication.SERVER_ROOT)
+                .addParam(I.REQUEST, I.Request.REQUEST_GET_SORT_IN_COURSE)
+                .addParam(I.Exercise.COURSE_ID, courseId)
+                .targetClass(ExerciseBean[].class)
+                .execute(new OkHttpUtils.OnCompleteListener<ExerciseBean[]>() {
+                    @Override
+                    public void onSuccess(ExerciseBean[] result) {
+                        callback.onExerciseSortInCourseLoaded(result);
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        callback.onDataNotAvailable();
+                    }
+                });
 
     }
 

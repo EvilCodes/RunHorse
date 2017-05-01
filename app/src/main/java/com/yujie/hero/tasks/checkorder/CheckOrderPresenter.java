@@ -4,12 +4,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.yujie.hero.fragment.SortClassFragment;
-import com.yujie.hero.fragment.SortCourseFragment;
-import com.yujie.hero.fragment.SortTimeFragment;
+import com.yujie.hero.tasks.checkorder.sortclass.SortClassFragment;
+import com.yujie.hero.tasks.checkorder.sortcourse.SortCourseFragment;
+import com.yujie.hero.tasks.checkorder.sorttime.SortTimeFragment;
 
 /**
- * Created by Administrator on 2017/4/24.
+ * Created by Administrator ON 2017/4/24.
  */
 
 public class CheckOrderPresenter implements CheckOrderContract.Presenter{

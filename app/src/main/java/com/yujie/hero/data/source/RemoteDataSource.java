@@ -115,9 +115,9 @@ public interface RemoteDataSource {
 
     interface LoadExerciseSortInClassCallback{
 
-        void onExerciseSortInTimeClass(ExerciseBean[] result);
+        void onExerciseSortInClass(ExerciseBean[] result);
 
-        void onExerciseSortInTimeClassSaved(boolean isSaved);
+        void onExerciseSortInClassSaved(boolean isSaved);
 
 
 
@@ -180,7 +180,7 @@ public interface RemoteDataSource {
     void saveExerciseGradeSortInTime(@NonNull ExerciseBean[] result,@NonNull LoadExerciseSortInTimeCallback callback);
 
 
-    void getExerciseGradeSortInClass(@NonNull int b_class,@NonNull LoadExerciseSortInClassCallback callback);
+    void getExerciseGradeSortInClass(@NonNull String b_class,@NonNull LoadExerciseSortInClassCallback callback);
     void saveExerciseGradeSortInClass(@NonNull ExerciseBean[] result,@NonNull LoadExerciseSortInClassCallback callback);
 
 
