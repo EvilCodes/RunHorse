@@ -200,6 +200,11 @@ public class EorEPresenter implements EorEContract.Presenter {
     }
 
     @Override
+    public void initAniData() {
+        mFragment.initAniData();
+    }
+
+    @Override
     public void start() {
 
     }

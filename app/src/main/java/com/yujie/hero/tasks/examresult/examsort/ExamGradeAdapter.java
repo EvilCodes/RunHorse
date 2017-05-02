@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.yujie.hero.R;
 import com.yujie.hero.data.bean.ExamResultBean;
-import com.yujie.hero.tasks.adapter.RecycleAdapter;
+import com.yujie.hero.tasks.checkorder.RecycleAdapter;
 
 import java.util.ArrayList;
 

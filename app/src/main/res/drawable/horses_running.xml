@@ -2,27 +2,27 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:drawable="@drawable/horse00"
-        android:duration="300" />
+        android:duration="100" />
 
     <item
         android:drawable="@drawable/horse01"
-        android:duration="300" />
+        android:duration="100" />
 
     <item
         android:drawable="@drawable/horse02"
-        android:duration="300" />
+        android:duration="100" />
 
     <item
         android:drawable="@drawable/horse03"
-        android:duration="300" />
+        android:duration="100" />
 
 
     <item
         android:drawable="@drawable/horse04"
-        android:duration="300" />
+        android:duration="100" />
 
     <item
         android:drawable="@drawable/horse05"
-        android:duration="300" />
+        android:duration="100" />
 
 </animation-list>

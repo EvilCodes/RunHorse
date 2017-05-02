@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.yujie.hero.fragment.SortAvgClassFragment">
 
-    <com.yujie.hero.view.PercentLinearLayout
+    <com.yujie.hero.data.view.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -28,6 +28,6 @@
             android:layout_height="0dp"
             android:layout_weight="1" >
         </lecho.lib.hellocharts.view.ColumnChartView>
-    </com.yujie.hero.view.PercentLinearLayout>
+    </com.yujie.hero.data.view.PercentLinearLayout>
 
 </android.support.percent.PercentFrameLayout>

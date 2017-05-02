@@ -20,7 +20,7 @@ import com.yujie.hero.data.bean.ExerciseBean;
 import com.yujie.hero.data.bean.Result;
 import com.yujie.hero.data.source.RemoteDataSource;
 import com.yujie.hero.data.source.remote.TasksRemoteDataSource;
-import com.yujie.hero.tasks.adapter.RecycleAdapter;
+import com.yujie.hero.tasks.checkorder.RecycleAdapter;
 import com.yujie.hero.utils.Utils;
 
 import java.util.ArrayList;

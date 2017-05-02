@@ -1,4 +1,4 @@
-package com.yujie.hero.view;
+package com.yujie.hero.data.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

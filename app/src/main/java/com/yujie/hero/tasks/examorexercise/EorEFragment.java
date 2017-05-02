@@ -70,6 +70,9 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
     private int keyCount = 0;
     private int challengePoint = 0;
     private MCountDownTimer mc;
+    private TranslateAnimation aniRunhHorsea;
+    private TranslateAnimation aniRunHorseb;
+
 
     @Nullable
     @Override
@@ -78,6 +81,7 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
         View view = LayoutInflater.from(context).inflate(R.layout.fragment_game, container, false);
         ButterKnife.bind(this, view);
         mPresenter.initTitle();
+        mPresenter.initAniData();
         mPresenter.setTextChangedListener();
         return view;
     }
@@ -96,6 +100,7 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
         if (!isBegan) {
             mc.start();
             isBegan = true;
+            mPresenter.showRunHorse();
         }
 
     }
@@ -160,23 +165,17 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
     }
 
 
-
-
-
     @Override
     public void showRunHorse() {
-        ivRunhorse.setImageResource(R.drawable.horses_running);
-        TranslateAnimation animation = new TranslateAnimation(0, 1000, 0, 0);
-        animation.setDuration(5000);
-        ivRunhorse.setAnimation(animation);
-        ivRunhorse.setBackgroundColor(Color.TRANSPARENT);
-        AnimationDrawable anima = (AnimationDrawable) ivRunhorse.getDrawable();
-        anima.start();
+        if (isBegan) {
+            ivRunhorse.startAnimation(aniRunhHorsea);
+            ivSlowhorse.startAnimation(aniRunHorseb);
+        }
 
-        ivSlowhorse.setImageResource(R.drawable.horses_running);
-        ivSlowhorse.setBackgroundColor(Color.TRANSPARENT);
-        AnimationDrawable animSlow = (AnimationDrawable) ivSlowhorse.getDrawable();
-        animSlow.start();
+//
+//        aniRunhHorsea.start();
+//        aniRunHorseb.start();
+
 
     }
 
@@ -317,6 +316,31 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
                 .setCancelable(false)
                 .create();
         dialog.show();
+
+    }
+
+    @Override
+    public void initAniData() {
+//        animation.setDuration(8000);
+//        if (isBegan) {
+//            ivRunhorse.setAnimation(animation);
+//        }
+
+        aniRunhHorsea = new TranslateAnimation(0, 1200, 0, 0);
+        aniRunhHorsea.setDuration(8000);
+        aniRunhHorsea.setRepeatMode(TranslateAnimation.RESTART);
+        aniRunhHorsea.setRepeatCount(TranslateAnimation.INFINITE);
+
+        aniRunHorseb = new TranslateAnimation(0, 1200, 0, 0);
+        aniRunHorseb.setDuration(20000);
+        aniRunHorseb.setRepeatMode(TranslateAnimation.RESTART);
+        aniRunHorseb.setRepeatCount(TranslateAnimation.INFINITE);
+
+        ivRunhorse.setImageResource(R.drawable.horses_running);
+        ivRunhorse.setBackgroundColor(Color.TRANSPARENT);
+
+        ivSlowhorse.setImageResource(R.drawable.horses_running);
+        ivSlowhorse.setBackgroundColor(Color.TRANSPARENT);
 
     }
 

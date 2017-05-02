@@ -94,7 +94,7 @@
             app:layout_marginRightPercent="5%" />
     </android.support.percent.PercentRelativeLayout>
 
-    <com.yujie.hero.view.PercentLinearLayout
+    <com.yujie.hero.data.view.PercentLinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
@@ -142,7 +142,7 @@
             app:layout_marginRightPercent="5%"
             app:layout_widthPercent="30%" />
 
-    </com.yujie.hero.view.PercentLinearLayout>
+    </com.yujie.hero.data.view.PercentLinearLayout>
 
     <Button
         android:id="@+id/register_activity_Button_chooseClass"

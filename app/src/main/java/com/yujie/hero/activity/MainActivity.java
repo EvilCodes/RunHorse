@@ -43,7 +43,7 @@ import com.yujie.hero.tasks.pwdsetting.PwdActivity;
 import com.yujie.hero.utils.FileUtils;
 import com.yujie.hero.utils.OkHttpUtils;
 import com.yujie.hero.utils.Utils;
-import com.yujie.hero.view.CircleTextImageView;
+import com.yujie.hero.data.view.CircleTextImageView;
 
 import java.io.File;
 import java.io.FileNotFoundException;

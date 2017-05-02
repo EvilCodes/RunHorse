@@ -21,7 +21,6 @@ import com.yujie.hero.data.bean.StartTimeBean;
 import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.data.bean.WordContentBean;
 import com.yujie.hero.data.source.RemoteDataSource;
-import com.yujie.hero.tasks.adapter.RecycleAdapter;
 import com.yujie.hero.utils.OkHttpUtils;
 import com.yujie.hero.utils.Utils;
 

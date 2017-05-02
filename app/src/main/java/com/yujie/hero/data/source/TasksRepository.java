@@ -76,6 +76,7 @@ public class TasksRepository implements TasksDataSource {
 
     @Override
     public void getLoginTuserTask(@NonNull LoadTuserCallback callback) {
+        mTasksLocalDataSource.getLoginTuserTask(callback);
 
 
     }
