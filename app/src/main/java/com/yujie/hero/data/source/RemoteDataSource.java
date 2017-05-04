@@ -1,11 +1,7 @@
 package com.yujie.hero.data.source;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.view.View;
 
-import com.yujie.hero.application.HeroApplication;
-import com.yujie.hero.application.I;
 import com.yujie.hero.data.bean.AreasBean;
 import com.yujie.hero.data.bean.ClassExamGradeBean;
 import com.yujie.hero.data.bean.ClassObj;
@@ -19,8 +15,6 @@ import com.yujie.hero.data.bean.Result;
 import com.yujie.hero.data.bean.StartTimeBean;
 import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.data.bean.WordContentBean;
-import com.yujie.hero.utils.OkHttpUtils;
-import com.yujie.hero.utils.Utils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -159,7 +153,7 @@ public interface RemoteDataSource {
     void getNetWorkTuserTask(@NonNull LoadTuserCallback callback, @NonNull String uid,
                              @NonNull String pwd);
     void updateTuserPasswordTask(@NonNull String pwd,  @NonNull LoadTuserCallback callback);
-    void saveTuserTask(@NonNull UserBean user, @NonNull int status, @NonNull LoadTuserCallback callback);
+    void saveTuserTask(@NonNull UserBean user, @NonNull LoadTuserCallback callback);
 
     void uploadExerciseGradeTask(@NonNull UserBean currentUser,@NonNull String nowDate,@NonNull String course_simple_name, @NonNull String speed, @NonNull LoadExerciseGradeCallback callback);
 

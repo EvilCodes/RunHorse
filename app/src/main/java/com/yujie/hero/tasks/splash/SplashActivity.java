@@ -24,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
             fragment=new SplashFragment();
         }
         new SplashPresenter(Injection.provideTasksRepository(this), fragment);
+
         AddFragmentToActivity.addFragmentToActivity(getSupportFragmentManager(),R.id.fmSplash,fragment);
 
     }

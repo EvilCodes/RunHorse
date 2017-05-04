@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yujie.hero.R;
-import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.data.application.HeroApplication;
 import com.yujie.hero.data.bean.ExerciseBean;
 import com.yujie.hero.data.bean.Result;
 import com.yujie.hero.data.source.RemoteDataSource;

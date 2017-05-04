@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yujie.hero.R;
-import com.yujie.hero.application.HeroApplication;
-import com.yujie.hero.data.bean.CourseBean;
+import com.yujie.hero.data.application.HeroApplication;
 import com.yujie.hero.data.bean.ExerciseBean;
 import com.yujie.hero.data.bean.Result;
 import com.yujie.hero.data.source.RemoteDataSource;

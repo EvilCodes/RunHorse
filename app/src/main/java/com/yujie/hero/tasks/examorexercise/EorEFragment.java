@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -25,7 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yujie.hero.R;
-import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.data.application.HeroApplication;
 import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.tasks.examresult.ExamResultActivity;
 import com.yujie.hero.utils.MCountDownTimer;

@@ -36,7 +36,7 @@ public final class TasksPersistenceContract {
          *有关DailyExercise数据库操作的相关字符串
          */
         interface DailyExercise{
-            public static final String TABLE_NAME = "t_daily_exercise";
+            public static final String TABLE_NAME = " t_daily_exercise";
             public static final String COLUMN_NAME_DAILY_EXERCISE_ID = "id";
             public static final String COLUMN_NAME_DAILY_GRADE = "grade";
             public static final String COLUMN_NAME_EXE_TIME = "exe_time";
@@ -51,15 +51,15 @@ public final class TasksPersistenceContract {
          * Iuser相关的数据库用到的字符串
          */
         interface Tuser{
-            public static final String TABLE_NAME = "t_user";
-            public static final String COLUMN_NAME_USER_ID = "entryid";
-            public static final String COLUMN_NAME_PASSWORD = "title";
-            public static final String COLUMN_NAME_USER_NAME = "description";
-            public static final String COLUMN_NAME_AVATAR = "completed";
-            public static final String COLUMN_NAME_TOP_GRADE = "completed";
-            public static final String COLUMN_NAME_SEX = "completed";
-            public static final String COLUMN_NAME_STATUS = "completed";
-            public static final String COLUMN_NAME_B_CLASS = "completed";
+            public static final String TABLE_NAME = " t_user";
+            public static final String COLUMN_NAME_USER_ID = "uid";
+            public static final String COLUMN_NAME_PASSWORD = "pwd";
+            public static final String COLUMN_NAME_USER_NAME = "user_name";
+            public static final String COLUMN_NAME_AVATAR = "avatar";
+            public static final String COLUMN_NAME_TOP_GRADE = "top_grade";
+            public static final String COLUMN_NAME_SEX = "sex";
+            public static final String COLUMN_NAME_STATUS = "status";
+            public static final String COLUMN_NAME_B_CLASS = "b_class";
         }
 
         /**
@@ -67,7 +67,7 @@ public final class TasksPersistenceContract {
          */
         interface WordsContent{
 
-            public static final String TABLE_NAME = "t_words_content";
+            public static final String TABLE_NAME = " t_words_content";
             public static final String COLUMN_NAME_WORDS_ID = "id";
             public static final String COLUMN_NAME_WORD = "word";
             public static final String COLUMN_NAME_COURSE_ID = "course_id";

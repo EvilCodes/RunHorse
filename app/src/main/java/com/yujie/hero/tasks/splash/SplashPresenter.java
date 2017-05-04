@@ -29,6 +29,7 @@ public class SplashPresenter implements SplashContract.Presenter{
 
     @Override
     public void findLoginUser() {
+
         mTasksRepository.getLoginTuserTask(new TasksDataSource.LoadTuserCallback() {
             @Override
             public void onUserBeanLoginLoaded(UserBean userBean) {
@@ -60,6 +61,7 @@ public class SplashPresenter implements SplashContract.Presenter{
 
             @Override
             public void onDataNotAvailable() {
+                mFragment.sendMessage(null);
 
             }
         });

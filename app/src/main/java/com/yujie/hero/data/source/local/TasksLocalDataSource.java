@@ -60,7 +60,7 @@ public class TasksLocalDataSource implements TasksDataSource {
     @Override
     public void getLoginTuserTask(@NonNull LoadTuserCallback callback) {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
-        String sql = "select * from t_user where status=1";
+        String sql = "select * from t_user";
         UserBean user = null;
         Cursor cursor = db.rawQuery(sql, null);
         while (cursor.moveToNext()) {
@@ -71,7 +71,6 @@ public class TasksLocalDataSource implements TasksDataSource {
             int b_class = cursor.getInt(cursor.getColumnIndex("b_class"));
             String avatar = cursor.getString(cursor.getColumnIndex("avatar"));
             int top_grade = cursor.getInt(cursor.getColumnIndex("top_grade"));
-            int status = cursor.getInt(cursor.getColumnIndex("status"));
             user = new UserBean(uid, pwd, user_name, sex, b_class, top_grade, avatar);
         }
         if (cursor != null) {
@@ -127,7 +126,7 @@ public class TasksLocalDataSource implements TasksDataSource {
     }
 
     @Override
-    public void saveTuserTask(@NonNull UserBean userBean, @NonNull int status, @NonNull LoadTuserCallback callback) {
+    public void saveTuserTask(@NonNull UserBean userBean,  @NonNull LoadTuserCallback callback) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("uid", userBean.getUid());
@@ -137,13 +136,12 @@ public class TasksLocalDataSource implements TasksDataSource {
         values.put("b_class", userBean.getSex());
         values.put("avatar", userBean.getAvatar());
         values.put("top_grade", userBean.getTop_grade());
-        values.put("status", status);
         long insert = db.insert("t_user", null, values);
 //        callback.onUserBeanSaved(insert > 0);
     }
 
     @Override
-    public void updateTuserTask(@NonNull UserBean user, @NonNull int status, @NonNull LoadTuserCallback callback) {
+    public void updateTuserTask(@NonNull UserBean user,  @NonNull LoadTuserCallback callback) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("uid", user.getUid());
@@ -153,16 +151,14 @@ public class TasksLocalDataSource implements TasksDataSource {
         values.put("b_class", user.getSex());
         values.put("avatar", user.getAvatar());
         values.put("top_grade", user.getTop_grade());
-        values.put("status", status);
         int update = db.update("t_user", values, "user_name=?", new String[]{user.getUser_name()});
         callback.onUserBeanUpdated(update > 0);
     }
 
     @Override
-    public void updateTuserStatusTask(@NonNull int status, @NonNull String user_name, @NonNull LoadTuserCallback callback) {
+    public void updateTuserStatusTask(@NonNull String user_name, @NonNull LoadTuserCallback callback) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("status", status);
         int update = db.update("t_user", values, "user_name=?", new String[]{user_name});
         callback.onStatusUpdated(update > 0);
     }
@@ -171,11 +167,10 @@ public class TasksLocalDataSource implements TasksDataSource {
      * 添加日常练习的成绩
      *
      * @param user
-     * @param status
      * @param callback
      */
     @Override
-    public void saveExerciseGradeTask(@NonNull ExerciseBean user, @NonNull int status, @NonNull LoadExerciseGradeCallback callback) {
+    public void saveExerciseGradeTask(@NonNull ExerciseBean user, @NonNull LoadExerciseGradeCallback callback) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("grade", user.getGrade());
@@ -256,7 +251,7 @@ public class TasksLocalDataSource implements TasksDataSource {
         if (i == wordList.size()){
             db.close();
         }
-        callback.onWordContentBeansSaved(true);
+//        callback.onWordContentBeansSaved(true);
     }
 
     public void cleanData(String tableName) {

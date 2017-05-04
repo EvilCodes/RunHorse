@@ -37,7 +37,7 @@ public interface LoginContract {
 
         void checkOnClickButton();
 
-        void addLoginUserToLocalData(UserBean user, int status);
+        void addLoginUserToLocalData(UserBean user);
 
 
 

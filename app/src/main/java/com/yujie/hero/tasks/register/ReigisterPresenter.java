@@ -1,20 +1,11 @@
 package com.yujie.hero.tasks.register;
 
-import android.widget.Toast;
-
-import com.yujie.hero.activity.*;
-import com.yujie.hero.application.HeroApplication;
-import com.yujie.hero.application.I;
 import com.yujie.hero.data.bean.AreasBean;
 import com.yujie.hero.data.bean.ClassObj;
 import com.yujie.hero.data.bean.CourseBean;
 import com.yujie.hero.data.bean.Result;
 import com.yujie.hero.data.bean.StartTimeBean;
 import com.yujie.hero.data.source.RemoteDataSource;
-import com.yujie.hero.utils.OkHttpUtils;
-import com.yujie.hero.utils.Utils;
-
-import java.util.ArrayList;
 
 /**
  * Created by Administrator on 2017/4/10 0010.

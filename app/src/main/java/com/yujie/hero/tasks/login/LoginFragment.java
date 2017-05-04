@@ -16,9 +16,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.yujie.hero.R;
-import com.yujie.hero.activity.MainActivity;
-import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.data.application.HeroApplication;
 import com.yujie.hero.data.bean.UserBean;
+import com.yujie.hero.tasks.main.MainActivity;
 import com.yujie.hero.tasks.register.RegisterActivity;
 import com.yujie.hero.utils.StartTargetActivity;
 
@@ -97,7 +97,7 @@ public class LoginFragment extends Fragment implements LoginContract.View, View.
     @Override
     public void getUserFromRemote(UserBean user) {
         HeroApplication.getInstance().setCurrentUser(user);
-        mPresenter.addLoginUserToLocalData(user, 1);
+        mPresenter.addLoginUserToLocalData(user);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("userName", user.getUid());
         editor.commit();

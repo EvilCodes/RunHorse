@@ -94,9 +94,9 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void addLoginUserToLocalData(UserBean user, int status) {
+    public void addLoginUserToLocalData(UserBean user) {
 
-        mTasksRepository.saveTuserTask(user, status, null);
+        mTasksRepository.saveTuserTask(user, null);
 
     }
 

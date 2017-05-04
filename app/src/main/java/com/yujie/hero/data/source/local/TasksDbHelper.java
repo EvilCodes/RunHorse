@@ -16,7 +16,7 @@ public class TasksDbHelper extends SQLiteOpenHelper{
 
     private static final String TEXT_TYPE = " TEXT";
 
-    private static final String BOOLEAN_TYPE = " INTEGER";
+    private static final String BOOLEAN_TYPE = " Integer";
 
     private static final String COMMA_SEP = ",";
 
@@ -29,12 +29,12 @@ public class TasksDbHelper extends SQLiteOpenHelper{
             + TasksPersistenceContract.TaskEntry.Tuser.COLUMN_NAME_B_CLASS + BOOLEAN_TYPE + COMMA_SEP
             + TasksPersistenceContract.TaskEntry.Tuser.COLUMN_NAME_AVATAR + TEXT_TYPE + COMMA_SEP
             + TasksPersistenceContract.TaskEntry.Tuser.COLUMN_NAME_TOP_GRADE + BOOLEAN_TYPE
-            + TasksPersistenceContract.TaskEntry.Tuser.COLUMN_NAME_STATUS+BOOLEAN_TYPE+ ");";
+            + ");";
 
 
     private static final String SQL_CREATE_DAILY_EXERCISE = "CREATE TABLE" + TasksPersistenceContract.
             TaskEntry.DailyExercise.TABLE_NAME + "(" + TasksPersistenceContract.
-            TaskEntry.DailyExercise.COLUMN_NAME_DAILY_EXERCISE_ID + BOOLEAN_TYPE + "PRIMARY KEY AUTOINCREMENT,"
+            TaskEntry.DailyExercise.COLUMN_NAME_DAILY_EXERCISE_ID + BOOLEAN_TYPE + " PRIMARY KEY AUTOINCREMENT,"
             + TasksPersistenceContract.TaskEntry.DailyExercise.COLUMN_NAME_DAILY_GRADE + BOOLEAN_TYPE + COMMA_SEP
             + TasksPersistenceContract.TaskEntry.DailyExercise.COLUMN_NAME_EXE_TIME + TEXT_TYPE + COMMA_SEP
             + TasksPersistenceContract.TaskEntry.DailyExercise.COLUMN_NAME_USER + TEXT_TYPE + COMMA_SEP
@@ -51,7 +51,7 @@ public class TasksDbHelper extends SQLiteOpenHelper{
 //            ");";
 private static final String SQL_CREATE_WORDS_CONTENT = "CREATE TABLE" + TasksPersistenceContract.
         TaskEntry.WordsContent.TABLE_NAME + "(" + TasksPersistenceContract.
-        TaskEntry.WordsContent.COLUMN_NAME_WORDS_ID + BOOLEAN_TYPE + "PRIMARY KEY AUTOINCREMENT,"
+        TaskEntry.WordsContent.COLUMN_NAME_WORDS_ID + BOOLEAN_TYPE + " PRIMARY KEY AUTOINCREMENT,"
         + TasksPersistenceContract.TaskEntry.WordsContent.COLUMN_NAME_WORD+TEXT_TYPE+ COMMA_SEP
         + TasksPersistenceContract.TaskEntry.WordsContent.COLUMN_NAME_COURSE_ID+TEXT_TYPE+COMMA_SEP
         +" FOREIGN KEY(course_id) REFERENCES t_course(simple_name)"+

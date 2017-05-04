@@ -10,14 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.yujie.hero.R;
-import com.yujie.hero.activity.MainActivity;
-import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.data.application.HeroApplication;
 import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.tasks.login.LoginActivity;
+import com.yujie.hero.tasks.main.MainActivity;
 import com.yujie.hero.utils.StartTargetActivity;
 
 /**

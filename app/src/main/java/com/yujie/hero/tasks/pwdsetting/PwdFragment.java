@@ -15,8 +15,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.yujie.hero.R;
-import com.yujie.hero.activity.MainActivity;
-import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.data.application.HeroApplication;
 import com.yujie.hero.data.bean.Result;
 import com.yujie.hero.tasks.login.LoginActivity;
 import com.yujie.hero.utils.StartTargetActivity;

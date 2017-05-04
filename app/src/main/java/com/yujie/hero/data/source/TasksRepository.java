@@ -193,13 +193,13 @@ public class TasksRepository implements TasksDataSource {
     }
 
     @Override
-    public void updateTuserTask(@NonNull UserBean userBean, @NonNull int status, @NonNull LoadTuserCallback callback) {
+    public void updateTuserTask(@NonNull UserBean userBean,  @NonNull LoadTuserCallback callback) {
 
     }
 
     @Override
-    public void updateTuserStatusTask(@NonNull int status, @NonNull String username, @NonNull final LoadTuserCallback callback) {
-        mTasksLocalDataSource.updateTuserStatusTask(status, username, new LoadTuserCallback() {
+    public void updateTuserStatusTask(@NonNull String username, @NonNull final LoadTuserCallback callback) {
+        mTasksLocalDataSource.updateTuserStatusTask( username, new LoadTuserCallback() {
             @Override
             public void onUserBeanLoginLoaded(UserBean userBeen) {
             }
@@ -230,11 +230,11 @@ public class TasksRepository implements TasksDataSource {
     }
 
     @Override
-    public void saveTuserTask(@NonNull UserBean user, @NonNull int status, @NonNull LoadTuserCallback callback) {
+    public void saveTuserTask(@NonNull UserBean user, @NonNull LoadTuserCallback callback) {
 
-        mTasksRemoteDataSource.saveTuserTask(user, status, (RemoteDataSource.LoadTuserCallback) callback);
+        mTasksRemoteDataSource.saveTuserTask(user, (RemoteDataSource.LoadTuserCallback) callback);
         refreshLocalDataSource(user,callback);
-        mTasksLocalDataSource.saveTuserTask(user, status, callback);
+        mTasksLocalDataSource.saveTuserTask(user, callback);
         if (mCachedUserBeanTasks == null) {
             mCachedUserBeanTasks = new LinkedHashMap<>();
         }
@@ -244,7 +244,7 @@ public class TasksRepository implements TasksDataSource {
     }
 
     @Override
-    public void saveExerciseGradeTask(@NonNull ExerciseBean user, @NonNull int status, @NonNull LoadExerciseGradeCallback callback) {
+    public void saveExerciseGradeTask(@NonNull ExerciseBean user,  @NonNull LoadExerciseGradeCallback callback) {
 
     }
 

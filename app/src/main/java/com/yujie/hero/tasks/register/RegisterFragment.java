@@ -9,9 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.v4.app.Fragment;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +22,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.yujie.hero.R;
-import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.data.application.HeroApplication;
 import com.yujie.hero.data.bean.AreasBean;
 import com.yujie.hero.data.bean.ClassObj;
 import com.yujie.hero.data.bean.CourseBean;
@@ -35,16 +33,13 @@ import com.yujie.hero.tasks.login.LoginActivity;
 import com.yujie.hero.utils.StartTargetActivity;
 import com.yujie.hero.utils.Utils;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 import static com.yujie.hero.R.id.register_activity_Button_chooseClass;
-import static com.yujie.hero.R.id.time;
 
 /**
  * Created by Administrator on 2017/4/10 0010.
