@@ -74,10 +74,10 @@ public class MainFragment extends Fragment implements MainContract.View, ComboLi
     TextView noJoinTxt;
     @Bind(R.id.NoJoinImg)
     ImageView noJoinImg;
-    @Bind(R.id.main_activity_col_line_showGrades)
-    ComboLineColumnChartView mainActivityColLineShowGrades;
     @Bind(R.id.nav_view)
     NavigationView navView;
+    @Bind(R.id.main_activity_col_line_showGrades)
+    ComboLineColumnChartView mainActivityColLineShowGrades;
     @Bind(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
@@ -201,10 +201,7 @@ public class MainFragment extends Fragment implements MainContract.View, ComboLi
             listener = new OnSetAvatarListener(getActivity(), R.id.drawer_layout,
                     currentUser.getUid(), "user_avatar", currentUser.getUid());
 
-
         }
-
-
     }
 
     @Override
@@ -274,9 +271,9 @@ public class MainFragment extends Fragment implements MainContract.View, ComboLi
             Log.e("MainFragment", "MainFragment.result=" + stuGrades.get(0).toString());
             numberOfPoints = stuGrades.size();
             randomNumbersTab = new int[maxNumberOfLines][numberOfPoints];
+            mPresenter.generateValues();
             mPresenter.generateColumnData();
             mPresenter.generateLineData();
-            mPresenter.generateValues();
             mPresenter.generateData();
         } else {
             mainActivityColLineShowGrades.setVisibility(View.GONE);
@@ -298,9 +295,9 @@ public class MainFragment extends Fragment implements MainContract.View, ComboLi
             stuGrades = Utils.array2List(result);
             numberOfPoints = stuGrades.size();
             randomNumbersTab = new int[maxNumberOfLines][numberOfPoints];
+            mPresenter.generateValues();
             mPresenter.generateColumnData();
             mPresenter.generateLineData();
-            mPresenter.generateValues();
             mPresenter.generateData();
         } else {
             mainActivityColLineShowGrades.setVisibility(View.GONE);
@@ -409,7 +406,14 @@ public class MainFragment extends Fragment implements MainContract.View, ComboLi
 
     @Override
     public void generateData() {
-        data = new ComboLineColumnChartData(columnChartData, lineChartData);
+
+
+
+
+        data = new ComboLineColumnChartData();
+        data.setLineChartData(lineChartData);
+        data.setColumnChartData(columnChartData);
+
 
         if (hasAxes) {
             Axis axisX = new Axis();
