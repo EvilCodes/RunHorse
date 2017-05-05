@@ -29,6 +29,9 @@ import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.tasks.examresult.ExamResultActivity;
 import com.yujie.hero.utils.MCountDownTimer;
 import com.yujie.hero.utils.StartTargetActivity;
+import com.yujie.hero.utils.Utils;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -88,7 +91,7 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.showRunHorse();
+//        mPresenter.showRunHorse();
         mPresenter.showWordContent(course_simple_name);
 
     }
@@ -106,60 +109,48 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-//        if (s.length() > 0) {
-////            Log.e("EorFragment", "onTextChanged.s=" + s.toString());
-//            String m =  s.toString();
-////            char c = s.charAt(start);
-////            if (c != contentTxt.charAt(start) && !String.valueOf(contentTxt.charAt(start)).equals(" ")) {
-//////                s.delete(pos, pos + 1);
-////
-////                mPresenter.showToast("input error");
-////                editContent.setSelection(start);
-////            } else if (String.valueOf(contentTxt.charAt(start)).equals(" ")) {
-////                m += " ";
-////
-////            } else if (c == contentTxt.charAt(start)) {
-////
-////                keyCount++;
-////            }
-//////            s = m;
-//            editContent.setText(m);
-//            editContent.setSelection(start+before);
-////
-////            Log.e("Eorfragment", "keyCount=" + keyCount);
-//////            if (s.length() == contentTxt.length()) {
-//////                mPresenter.showWordContent(course_simple_name);
-//////                editContent.setText("");
-//////            }
-//        }
-
+//
     }
 
     @Override
     public void afterTextChanged(Editable s) {
+
+//实现打字输入的相关逻辑
+
         if (s.length() > 0) {
-            Log.e("EorFragment", "afterTextchanged.s=" + s.toString());
-//            String m = s.toString();
+
+            String m="";
             int start = s.length() - 1;
+
             char c = s.charAt(start);
-            if (c != contentTxt.charAt(start) && !String.valueOf(contentTxt.charAt(start)).equals(" ")) {
-//                s.delete(pos, pos + 1);
+            char d = contentTxt.charAt(start);
 
-                mPresenter.showToast("input error");
-            } else if (String.valueOf(contentTxt.charAt(start)).equals(" ")) {
-
-//                m += " ";
-//
-            } else if (c == contentTxt.charAt(start)) {
-
+            if (c == d && d != ' ') {
                 keyCount++;
-            }
 
-            Log.e("Eorfragment", "keyCount=" + keyCount);
+            } else if (c == d && d == ' ') {
+                s = s.delete(start, start + 1);
+            } else if (c != d && d == ' ') {
+                for (int i=0;i<s.length();i++) {
+                   m+=s.charAt(i);
+                    if (i == start - 1) {
+                        m += " ";
+                    }
+                }
+                editContent.setText(m);
+                editContent.setSelection(start+2);
+
+            } else if (c != d && d != ' ') {
+
+                s.delete(start, start + 1);
+                mPresenter.showToast("输入错误，请重新输入");
+
+            }
             if (s.length() == contentTxt.length()) {
                 mPresenter.showWordContent(course_simple_name);
                 editContent.setText("");
             }
+
         }
     }
 
@@ -171,9 +162,6 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
             ivSlowhorse.startAnimation(aniRunHorseb);
         }
 
-//
-//        aniRunhHorsea.start();
-//        aniRunHorseb.start();
 
 
     }
@@ -336,16 +324,18 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
         aniRunHorseb.setRepeatCount(TranslateAnimation.INFINITE);
 
         ivRunhorse.setImageResource(R.drawable.horses_running);
-        ivRunhorse.setBackgroundColor(Color.TRANSPARENT);
+//        ivSlowhorse.setBackgroundColor(Color.TRANSPARENT);
+
 
         ivSlowhorse.setImageResource(R.drawable.horses_running);
-        ivSlowhorse.setBackgroundColor(Color.TRANSPARENT);
+//        ivSlowhorse.setBackgroundColor(Color.TRANSPARENT);
+
 
     }
 
     @Override
     public void showToast(String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
