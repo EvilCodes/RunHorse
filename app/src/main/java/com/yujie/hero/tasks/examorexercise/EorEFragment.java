@@ -129,8 +129,8 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
             }
             isDeleted = false;
             if (c == d && d == ' ') {
-                s = s.delete(start, start + 1);//正确输入显示的空格的时候保证光标不移动
                 isDeleted = true;
+                s = s.delete(start, start + 1);//正确输入显示的空格的时候保证光标不移动
                 mPresenter.showToast("输入错误，请重新输入");
 
             } else if (c != d && d == ' ' && c == contentTxt.charAt(start + 1)) {
