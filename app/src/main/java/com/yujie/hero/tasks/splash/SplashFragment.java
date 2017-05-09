@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yujie.hero.R;
-import com.yujie.hero.data.application.HeroApplication;
+import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.tasks.login.LoginActivity;
 import com.yujie.hero.tasks.main.MainActivity;

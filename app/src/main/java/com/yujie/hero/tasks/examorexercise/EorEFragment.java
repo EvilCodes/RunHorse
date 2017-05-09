@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -24,14 +23,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yujie.hero.R;
-import com.yujie.hero.data.application.HeroApplication;
+import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.data.bean.UserBean;
 import com.yujie.hero.tasks.examresult.ExamResultActivity;
 import com.yujie.hero.utils.MCountDownTimer;
 import com.yujie.hero.utils.StartTargetActivity;
-import com.yujie.hero.utils.Utils;
-
-import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -74,6 +70,7 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
     private MCountDownTimer mc;
     private TranslateAnimation aniRunhHorsea;
     private TranslateAnimation aniRunHorseb;
+    private boolean isDeleted = false;
 
 
     @Nullable
@@ -93,9 +90,7 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
         super.onResume();
 //        mPresenter.showRunHorse();
         mPresenter.showWordContent(course_simple_name);
-
     }
-
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -104,7 +99,6 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
             isBegan = true;
             mPresenter.showRunHorse();
         }
-
     }
 
     @Override
@@ -112,36 +106,50 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
 //
     }
 
+    /**
+     * 有关输入法控制的修改和优化
+     *
+     * @param s
+     */
     @Override
     public void afterTextChanged(Editable s) {
 
-//实现打字输入的相关逻辑
 
         if (s.length() > 0) {
 
-            String m="";
+            String m = "";
             int start = s.length() - 1;
-
             char c = s.charAt(start);
             char d = contentTxt.charAt(start);
+            Log.e("EorEFragment", "start=" + start);
 
-            if (c == d && d != ' ') {
-                keyCount++;
+            if (c == d && d != ' ' && !isDeleted) {
+                keyCount++;//正确输入使得输入的次数根据正确的输入依次加一
 
-            } else if (c == d && d == ' ') {
-                s = s.delete(start, start + 1);
-            } else if (c != d && d == ' ') {
-                for (int i=0;i<s.length();i++) {
-                   m+=s.charAt(i);
+            }
+            isDeleted = false;
+            if (c == d && d == ' ') {
+                s = s.delete(start, start + 1);//正确输入显示的空格的时候保证光标不移动
+                isDeleted = true;
+                mPresenter.showToast("输入错误，请重新输入");
+
+            } else if (c != d && d == ' ' && c == contentTxt.charAt(start + 1)) {
+
+                for (int i = 0; i < s.length(); i++) {
+                    m += s.charAt(i);
                     if (i == start - 1) {
                         m += " ";
                     }
                 }
                 editContent.setText(m);
-                editContent.setSelection(start+2);
+                editContent.setSelection(start + 2);
 
+            } else if (c != d && d == ' ' && c != contentTxt.charAt(start + 1)) {
+                s.delete(start, start + 1);
+                isDeleted = true;
+                mPresenter.showToast("输入错误，请重新输入");
             } else if (c != d && d != ' ') {
-
+                isDeleted = true;
                 s.delete(start, start + 1);
                 mPresenter.showToast("输入错误，请重新输入");
 
@@ -161,7 +169,6 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
             ivRunhorse.startAnimation(aniRunhHorsea);
             ivSlowhorse.startAnimation(aniRunHorseb);
         }
-
 
 
     }
@@ -308,10 +315,6 @@ public class EorEFragment extends Fragment implements TextWatcher, EorEContract.
 
     @Override
     public void initAniData() {
-//        animation.setDuration(8000);
-//        if (isBegan) {
-//            ivRunhorse.setAnimation(animation);
-//        }
 
         aniRunhHorsea = new TranslateAnimation(0, 1200, 0, 0);
         aniRunhHorsea.setDuration(8000);

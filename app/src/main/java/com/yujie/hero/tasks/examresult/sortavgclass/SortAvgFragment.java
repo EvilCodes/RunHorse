@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.yujie.hero.R;
-import com.yujie.hero.data.application.HeroApplication;
+import com.yujie.hero.application.HeroApplication;
 import com.yujie.hero.data.bean.ExamClassGradeBean;
 import com.yujie.hero.data.bean.ExamGradeAvgBean;
 import com.yujie.hero.data.source.remote.TasksRemoteDataSource;

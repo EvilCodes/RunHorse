@@ -9,8 +9,8 @@ import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.View;
 
-import com.yujie.hero.data.application.HeroApplication;
-import com.yujie.hero.data.application.I;
+import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.application.I;
 import com.yujie.hero.data.bean.ExamBean;
 import com.yujie.hero.data.bean.ExerciseBean;
 import com.yujie.hero.data.bean.WordContentBean;

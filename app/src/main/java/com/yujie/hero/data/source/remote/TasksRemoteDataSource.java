@@ -3,8 +3,8 @@ package com.yujie.hero.data.source.remote;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.yujie.hero.data.application.HeroApplication;
-import com.yujie.hero.data.application.I;
+import com.yujie.hero.application.HeroApplication;
+import com.yujie.hero.application.I;
 import com.yujie.hero.data.bean.AreasBean;
 import com.yujie.hero.data.bean.ClassExamGradeBean;
 import com.yujie.hero.data.bean.ClassObj;
