@@ -161,12 +161,14 @@
         android:id="@+id/register_activity_Button_register"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/register_activity_register_btn_bg"
         android:text="注册"
         android:textColor="#fff"
         android:textSize="30dp"
         app:layout_heightPercent="15%"
         app:layout_marginTopPercent="80%"
-        app:layout_widthPercent="80%" />
+        app:layout_widthPercent="80%"
+        android:layout_below="@+id/register_activity_Button_chooseClass"
+        android:layout_alignStart="@+id/register_activity_Button_chooseClass"
+        android:layout_marginTop="17dp" />
 </android.support.percent.PercentRelativeLayout>
